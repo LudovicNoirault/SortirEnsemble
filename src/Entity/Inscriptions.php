@@ -48,5 +48,46 @@ class Inscriptions
      */
     private $sortiessortie;
 
+    public function getIdinscriptions(): ?int
+    {
+        return $this->idinscriptions;
+    }
+
+    public function getDateInscription(): ?\DateTimeInterface
+    {
+        return $this->dateInscription;
+    }
+
+    public function setDateInscription(\DateTimeInterface $dateInscription): self
+    {
+        $this->dateInscription = $dateInscription;
+
+        return $this;
+    }
+
+    public function getParticipantsparticipant(): ?Participants
+    {
+        return $this->participantsparticipant;
+    }
+
+    public function setParticipantsparticipant(?Participants $participantsparticipant): self
+    {
+        $this->participantsparticipant = $participantsparticipant;
+
+        return $this;
+    }
+
+    public function getSortiessortie(): ?Sorties
+    {
+        return $this->sortiessortie;
+    }
+
+    public function setSortiessortie(?Sorties $sortiessortie): self
+    {
+        $this->sortiessortie = $sortiessortie;
+
+        return $this;
+    }
+
 
 }

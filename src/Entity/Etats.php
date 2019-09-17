@@ -28,5 +28,22 @@ class Etats
      */
     private $libelle;
 
+    public function getIdetat(): ?int
+    {
+        return $this->idetat;
+    }
+
+    public function getLibelle(): ?string
+    {
+        return $this->libelle;
+    }
+
+    public function setLibelle(string $libelle): self
+    {
+        $this->libelle = $libelle;
+
+        return $this;
+    }
+
 
 }
