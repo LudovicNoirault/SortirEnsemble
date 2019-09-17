@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SortiesController extends AbstractController
 {
     /** 
-    * @Route('/index', name="index")
+    * @Route("/index", name="index")
     */
     public function index()
     {
@@ -16,7 +16,7 @@ class SortiesController extends AbstractController
     }
 
     /** 
-    * @Route('/profile', name="profile")
+    * @Route("/profile", name="profile")
     */
     public function profile()
     {
@@ -24,7 +24,7 @@ class SortiesController extends AbstractController
     }
 
     /** 
-    * @Route('/sorties/{id}', name="sortie")
+    * @Route("/sorties/{id}", name="sortie")
     */
     public function singleSortie($id)
     {
@@ -32,7 +32,7 @@ class SortiesController extends AbstractController
     }
 
     /** 
-    * @Route('/sorties/creation', name="sortie_create")
+    * @Route("/sorties/creation", name="sortie_create")
     */
     public function createSortie()
     {
@@ -40,7 +40,7 @@ class SortiesController extends AbstractController
     }
 
     /** 
-    * @Route('/sorties/{id}/update', name="sortie_update")
+    * @Route("/sorties/{id}/update", name="sortie_update")
     */
     public function updateSortie($id)
     {
@@ -48,7 +48,7 @@ class SortiesController extends AbstractController
     }
 
     /** 
-    * @Route('/sorties/{id}/cancel', name="sortie_cancel")
+    * @Route("/sorties/{id}/cancel", name="sortie_cancel")
     */
     public function cancelSortie($id)
     {
@@ -56,7 +56,7 @@ class SortiesController extends AbstractController
     }
 
     /** 
-    * @Route('/villes', name="town")
+    * @Route("/villes", name="town")
     */
     public function town()
     {
@@ -64,7 +64,7 @@ class SortiesController extends AbstractController
     }
 
     /** 
-    * @Route('/sites', name="sites")
+    * @Route("/sites", name="sites")
     */
     public function sites()
     {
