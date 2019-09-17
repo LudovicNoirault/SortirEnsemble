@@ -22,4 +22,12 @@ class UsersController extends AbstractController
     {
         return $this->render('users/profile.html.twig');
     }
+
+    /** 
+    * @Route("/users/register", name="register")
+    */
+    public function register()
+    {
+        return $this->render('users/register.html.twig');
+    }
 }
