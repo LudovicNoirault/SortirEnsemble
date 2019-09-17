@@ -12,10 +12,8 @@ class SortiesController extends AbstractController
     */
     public function index()
     {
-        return $this->render('sorties/index.html.twig');
+        return $this->render('index.html.twig');
     }
-
-    
 
     /** 
     * @Route("/sorties/{id}", name="sortie")
