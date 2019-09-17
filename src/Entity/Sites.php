@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Sites
  *
- * @ORM\Table(name="SITES")
+ * @ORM\Table(name="sites")
  * @ORM\Entity
  */
 class Sites
@@ -27,23 +27,6 @@ class Sites
      * @ORM\Column(name="nom_site", type="string", length=30, nullable=false)
      */
     private $nomSite;
-
-    public function getIdsite(): ?int
-    {
-        return $this->idsite;
-    }
-
-    public function getNomSite(): ?string
-    {
-        return $this->nomSite;
-    }
-
-    public function setNomSite(string $nomSite): self
-    {
-        $this->nomSite = $nomSite;
-
-        return $this;
-    }
 
 
 }

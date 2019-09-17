@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Lieux
  *
- * @ORM\Table(name="LIEUX", indexes={@ORM\Index(name="lieux_villes_fk", columns={"villes_idVille"})})
+ * @ORM\Table(name="lieux", indexes={@ORM\Index(name="FK_villes", columns={"villes_idVille"})})
  * @ORM\Entity
  */
 class Lieux
@@ -58,71 +58,6 @@ class Lieux
      * })
      */
     private $villesville;
-
-    public function getIdlieu(): ?int
-    {
-        return $this->idlieu;
-    }
-
-    public function getNomLieu(): ?string
-    {
-        return $this->nomLieu;
-    }
-
-    public function setNomLieu(string $nomLieu): self
-    {
-        $this->nomLieu = $nomLieu;
-
-        return $this;
-    }
-
-    public function getRue(): ?string
-    {
-        return $this->rue;
-    }
-
-    public function setRue(?string $rue): self
-    {
-        $this->rue = $rue;
-
-        return $this;
-    }
-
-    public function getLatitude(): ?float
-    {
-        return $this->latitude;
-    }
-
-    public function setLatitude(?float $latitude): self
-    {
-        $this->latitude = $latitude;
-
-        return $this;
-    }
-
-    public function getLongitude(): ?float
-    {
-        return $this->longitude;
-    }
-
-    public function setLongitude(?float $longitude): self
-    {
-        $this->longitude = $longitude;
-
-        return $this;
-    }
-
-    public function getVillesville(): ?Villes
-    {
-        return $this->villesville;
-    }
-
-    public function setVillesville(?Villes $villesville): self
-    {
-        $this->villesville = $villesville;
-
-        return $this;
-    }
 
 
 }
