@@ -1,0 +1,160 @@
+/*---------------------------------------
+	TABLE OF CONTENT
+
+	- RESET
+	- FONT FACE
+	- KEYFRAMES
+	- BODY
+	- HEADER
+	- MAIN
+	- FOOTER
+	- MEDIA QUERIES
+
+---------------------------------------*/
+
+/*---------------------------------------
+	- RESET
+---------------------------------------*/
+body, html, header, footer, main, section, article, aside, div, span, p, a, ul, ol, li, table, caption, tr, th, td, thead, tbody, tfoot, pre, code, h1, h2, h3, h4, h5, h6, img, figure, figcaption, audio, video, source, address, progress, form, fieldset, select, option, optgroup, label, input, textarea {
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	list-style: none;
+	box-sizing: border-box;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1rem;
+}
+/*---------------------------------------
+	- COLORS
+---------------------------------------*/
+:root {
+	--main-txt-color: #999;
+	--main-txt-color-hover: #fff;
+	--main-bg-color: #333;
+}
+/*---------------------------------------
+	- FONT FACE
+---------------------------------------*/
+@font-face {
+    font-family: 'munk';
+    src: url("../fonts/munk5/Munk5Black.ttf");
+}
+@font-face {
+    font-family: Teko, sans-serif;
+    src: url("./fonts/Teko/Teko-Regular.ttf") format("ttf");
+}
+/*---------------------------------------
+	- KEYFRAMES
+---------------------------------------*/
+/*---------------------------------------
+	- BODY
+---------------------------------------*/
+html {
+	min-height: 100%;
+}
+body {
+	min-height: 100vh;
+	background-color: var(--main-bg-color);
+	color: var(--main-txt-color);
+	font-family: 'munk';
+	position: relative;
+}
+/*---------------------------------------
+	- HEADER
+---------------------------------------*/
+.header-main {
+	display: flex;
+	flex-direction: column;
+	height: 5rem;
+	width: 100%;
+	background-color: rgba(255, 255, 255, 0.1);
+}
+.nav-header-block {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+.nav-header-box {
+	display: flex;
+}
+.nav-header-box li {
+	padding: 0.5rem 1rem;
+}
+.nav-header-item {
+	color: var(--main-txt-color);
+	transition: 0.3s;
+}
+.nav-header-item:hover {
+	color: var(--main-txt-color-hover);
+	text-shadow: 0 0 0.3rem var(--main-txt-color-hover);
+	transition: 0.3s;
+}
+.header-logo {
+	position: absolute;
+	top: 0rem;
+	left: 50%;
+	transform: translateX(-50%);
+}
+.header-logo-1 {
+	width: 10rem;
+	height: 10rem;
+}
+.header-logo-2 {
+	width: 5rem;
+	height: 5rem;
+}
+.header-line {
+	width: 100%;
+	display: flex;
+}
+.header-line div {
+	width: 50%;
+	height: 2rem;
+	background-color: #b67b00;
+}
+.header-line-A {
+	transform: skewY(10deg);
+}
+.header-line-B {
+	transform: skewY(-10deg);
+}
+/*---------------------------------------
+	- MAIN
+---------------------------------------*/
+main {
+	display: flex;
+}
+/*---------------------------------------
+	- FOOTER
+---------------------------------------*/
+.footer-main {
+	position: absolute;
+	bottom: 0;
+	display: flex;
+	width: 100%;
+	height: 5rem;
+	background-color: rgba(255, 255, 255, 0.1);
+}
+.footer-svg {
+	width: 4.5rem;
+	height: 4.5rem;
+}
+/*---------------------------------------
+	- MEDIA QUERIES
+---------------------------------------*/
+@media screen and (max-width: 1400px){
+	
+}
+@media screen and (max-width: 1200px){
+	
+}
+@media screen and (max-width: 1000px){
+	
+}
+@media screen and (max-width: 800px){
+	
+}
+@media screen and (max-width: 600px){
+
+}

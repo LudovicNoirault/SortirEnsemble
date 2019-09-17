@@ -1,0 +1,1 @@
+/* lol je skrypte */
