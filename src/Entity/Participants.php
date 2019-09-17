@@ -3,14 +3,15 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Security\Core\User\User;
+use Entity\User;
 /**
  * Participants
  *
  * @ORM\Table(name="participants", uniqueConstraints={@ORM\UniqueConstraint(name="participants_pseudo_uk", columns={"pseudo"})}, indexes={@ORM\Index(name="FK_sites", columns={"sites_idSite"})})
  * @ORM\Entity
  */
-class Participants
+class Participants extends User
 {
     /**
      * @var int
@@ -55,20 +56,6 @@ class Participants
      * @ORM\Column(name="mail", type="string", length=20, nullable=false)
      */
     private $mail;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="mot_de_passe", type="string", length=20, nullable=false)
-     */
-    private $motDePasse;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="administrateur", type="boolean", nullable=false)
-     */
-    private $administrateur;
 
     /**
      * @var bool
@@ -148,30 +135,6 @@ class Participants
     public function setMail(string $mail): self
     {
         $this->mail = $mail;
-
-        return $this;
-    }
-
-    public function getMotDePasse(): ?string
-    {
-        return $this->motDePasse;
-    }
-
-    public function setMotDePasse(string $motDePasse): self
-    {
-        $this->motDePasse = $motDePasse;
-
-        return $this;
-    }
-
-    public function getAdministrateur(): ?bool
-    {
-        return $this->administrateur;
-    }
-
-    public function setAdministrateur(bool $administrateur): self
-    {
-        $this->administrateur = $administrateur;
 
         return $this;
     }

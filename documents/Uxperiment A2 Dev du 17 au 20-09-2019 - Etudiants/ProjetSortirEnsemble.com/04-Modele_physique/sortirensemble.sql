@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 17 sep. 2019 à 10:28
+-- Généré le :  mar. 17 sep. 2019 à 14:28
 -- Version du serveur :  5.7.21
 -- Version de PHP :  7.2.4
 
@@ -84,8 +84,6 @@ CREATE TABLE IF NOT EXISTS `participants` (
   `prenom` varchar(30) NOT NULL,
   `telephone` varchar(15) DEFAULT NULL,
   `mail` varchar(20) NOT NULL,
-  `mot_de_passe` varchar(20) NOT NULL,
-  `administrateur` tinyint(4) NOT NULL,
   `actif` tinyint(4) NOT NULL,
   `sites_idSite` int(11) NOT NULL,
   PRIMARY KEY (`idParticipant`),
@@ -103,6 +101,7 @@ DROP TABLE IF EXISTS `sites`;
 CREATE TABLE IF NOT EXISTS `sites` (
   `idSite` int(11) NOT NULL,
   `nom_site` varchar(30) NOT NULL,
+  `lieux_idLieu` int(11) NOT NULL,
   PRIMARY KEY (`idSite`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

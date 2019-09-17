@@ -12,23 +12,17 @@ class SortiesController extends AbstractController
     */
     public function index()
     {
-        return $this->render('index.html.twig');
+        return $this->render('sorties/index.html.twig');
     }
 
-    /** 
-    * @Route("/profile", name="profile")
-    */
-    public function profile()
-    {
-        return $this->render('profile.html.twig');
-    }
+    
 
     /** 
     * @Route("/sorties/{id}", name="sortie")
     */
     public function singleSortie($id)
     {
-        return $this->render('singleSortie.html.twig');
+        return $this->render('sorties/singleSortie.html.twig');
     }
 
     /** 
@@ -36,7 +30,7 @@ class SortiesController extends AbstractController
     */
     public function createSortie()
     {
-        return $this->render('createSortie.html.twig');
+        return $this->render('sorties/createSortie.html.twig');
     }
 
     /** 
@@ -44,7 +38,7 @@ class SortiesController extends AbstractController
     */
     public function updateSortie($id)
     {
-        return $this->render('updateSortie.html.twig');
+        return $this->render('sorties/updateSortie.html.twig');
     }
 
     /** 
@@ -52,7 +46,7 @@ class SortiesController extends AbstractController
     */
     public function cancelSortie($id)
     {
-        return $this->render('cancelSortie.html.twig');
+        return $this->render('sorties/cancelSortie.html.twig');
     }
 
     /** 
@@ -60,7 +54,7 @@ class SortiesController extends AbstractController
     */
     public function town()
     {
-        return $this->render('villes.html.twig');
+        return $this->render('sorties/villes.html.twig');
     }
 
     /** 
