@@ -13,9 +13,15 @@ use App\Entity\Villes;
 
 use App\Form\SortiesCreateForm;
 use App\Form\SortiesUpdateForm;
-use App\Form\LieuxForm;
-use App\Form\SitesForm;
-use App\Form\VillesForm;
+
+use App\Form\VillesCreateForm;
+use App\Form\VillesUpdateForm;
+
+use App\Form\SitesCreateForm;
+use App\Form\SitesUpdateForm;
+
+use App\Form\LieuxCreateForm;
+use App\Form\LieuxUpdateForm;
 
 class SortiesController extends AbstractController
 {
@@ -113,7 +119,7 @@ class SortiesController extends AbstractController
 
     // ---------------------- Lieux -------------------------------
 
-      /** 
+    /** 
     * @Route("/lieux/create", name="createLieu")
     */
     public function CreateLieu(Request $request)
@@ -146,10 +152,60 @@ class SortiesController extends AbstractController
         ]);
     }
 
+    /** 
+    * @Route("/lieux/{id}/update", name="lieux_update")
+    */
+    public function updateLieu(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $lieu = $em->getRepository('App\Entity\Lieux')->find($id);
+
+        if (!$lieu) {
+                throw $this->createNotFoundException(
+                'Pas de lieux pour l\'id ' . $id
+                );
+        }
+        $form = $this->createForm(LieuxUpdateForm::class, $lieu);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $lieu = $form->getData();
+            $em->flush();
+
+            return $this->redirectToRoute('index');
+        }
+
+        return $this->render('lieux/update_lieu.html.twig', [
+            'form' => $form->createView(),
+        ]);
+        
+    }
+
+    /** 
+    * @Route("/lieux/{id}/delete", name="lieu_delete")
+    */
+    public function deleteLieu($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $lieu = $em->getRepository('App\Entity\Lieux')->find($id);
+        if (!$lieu) {
+            throw $this->createNotFoundException(
+                'Pas de lieu pour l\'id ' . $id
+            );
+        }
+
+        $em->remove($id);
+        $em->flush();
+
+        return $this->redirectToRoute('index');
+    }
+
     // ---------------------- Town -------------------------------
 
     /** 
-    * @Route("/villes/create", name="createTown")
+    * @Route("/villes/create", name="create_town")
     */
     public function CreateTown(Request $request)
     {
@@ -181,6 +237,55 @@ class SortiesController extends AbstractController
         ]);
     }
 
+        /** 
+    * @Route("/villes/{id}/update", name="town_update")
+    */
+    public function updateTown(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $town = $em->getRepository('App\Entity\Villes')->find($id);
+
+        if (!$town) {
+                throw $this->createNotFoundException(
+                'Pas de ville pour l\'id ' . $id
+                );
+        }
+        $form = $this->createForm(VillesUpdateForm::class, $town);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $ville = $form->getData();
+            $em->flush();
+
+            return $this->redirectToRoute('index');
+        }
+
+        return $this->render('villes/update_ville.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /** 
+    * @Route("/villes/{id}/delete", name="ville_delete")
+    */
+    public function deleteVille($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $town = $em->getRepository('App\Entity\Villes')->find($id);
+        if (!$town) {
+            throw $this->createNotFoundException(
+                'Pas de Ville pour l\'id ' . $id
+            );
+        }
+
+        $em->remove($id);
+        $em->flush();
+
+        return $this->redirectToRoute('index');
+    }
+
     // ---------------------- Site -------------------------------
 
     /** 
@@ -190,7 +295,7 @@ class SortiesController extends AbstractController
     {
         // creates a sorties object and initializes some data for this example
         $site = new Sites();
-        $form = $this->createForm(SitesForm::class, $site);
+        $form = $this->createForm(SitesCreateForm::class, $site);
 
         $form->handleRequest($request);
 
@@ -214,5 +319,54 @@ class SortiesController extends AbstractController
         return $this->render('sites/create_site.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /** 
+    * @Route("/sites/{id}/update", name="site_update")
+    */
+    public function UpdateSite(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $site = $em->getRepository('App\Entity\Sites')->find($id);
+
+        if (!$site) {
+                throw $this->createNotFoundException(
+                'Pas de site pour l\'id ' . $id
+                );
+        }
+        $form = $this->createForm(SitesUpdateForm::class, $town);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $ville = $form->getData();
+            $em->flush();
+
+            return $this->redirectToRoute('index');
+        }
+
+        return $this->render('update_site.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /** 
+    * @Route("/sites/{id}/delete", name="site_delete")
+    */
+    public function DeleteSite($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $site = $em->getRepository('App\Entity\Sites')->find($id);
+        if (!$town) {
+            throw $this->createNotFoundException(
+                'Pas de site pour l\'id ' . $id
+            );
+        }
+
+        $em->remove($id);
+        $em->flush();
+
+        return $this->redirectToRoute('index');
     }
 }
