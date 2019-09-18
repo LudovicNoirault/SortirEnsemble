@@ -18,7 +18,9 @@ class SortiesController extends AbstractController
     */
     public function index()
     {
-        return $this->render('index.html.twig');
+        //return $this->render('index.html.twig');
+        $sorties = $this->getDoctrine()->getRepository('App\Entity\Sorties')->findAll();
+        return $this->render('sorties/read_sorties.html.twig', array('sorties' => $sorties));
     }
 
     /** 
