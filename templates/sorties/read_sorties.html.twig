@@ -1,0 +1,54 @@
+<style>
+th, td {
+  padding: 10px;
+}
+th {
+  text-align: left;
+}
+</style>
+
+<h1>All Sorties</h1>
+
+{% if sorties is not empty %}
+<table>
+  <thead>
+    <tr>
+      <th>Nom </th>
+      <th>Date de début</th>
+      <th>Durée</th>
+      <th>Date de cloture</th>
+      <th>Nombre d'inscrits maximum</th>
+      <th>Description de la sortie</th>
+      <th>Photo</th>
+      <th>Numéro de l'organisateur</th>
+      <th>Numéro du lieu</th>
+      <th>Etat</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for sortie in sorties %}
+  <tr>
+    <td>{{ sortie.nom }}</td>
+    <td>{{ sortie.datedebut|date('Y-m-d H:i:s') }}    </td>
+    <td>{{ sortie.duree }}</td>
+    <td>{{ sortie.datecloture|date('Y-m-d H:i:s') }}</td>
+    <td>{{ sortie.nbinscriptionsmax }}</td>
+    <td>{{ sortie.descriptioninfos }}</td>
+    <td>
+    {% if sortie.urlPhoto != "" %}
+      <a href="http://{{ sortie.urlPhoto}}">Voir la photo</a>
+    {% else %}
+      No photo found
+    {% endif %}
+    </td>
+    <td>{{ sortie.organisateur }}</td>
+    <td>{{ sortie.lieuxIdlieu }}</td>
+    <td>{{ sortie.etatsIdetat }}</td>
+
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+  <p>No sortie found.</p>
+{% endif %}
