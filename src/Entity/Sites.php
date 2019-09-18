@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Sites
  *
- * @ORM\Table(name="sites")
+ * @ORM\Table(name="sites", indexes={@ORM\Index(name="FK_lieux2", columns={"lieux_idLieu"})})
  * @ORM\Entity
  */
 class Sites
@@ -28,6 +28,13 @@ class Sites
      */
     private $nomSite;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="lieux_idLieu", type="integer", nullable=false)
+     */
+    private $lieuxIdlieu;
+
     public function getIdsite(): ?int
     {
         return $this->idsite;
@@ -41,6 +48,18 @@ class Sites
     public function setNomSite(string $nomSite): self
     {
         $this->nomSite = $nomSite;
+
+        return $this;
+    }
+
+    public function getLieuxIdlieu(): ?int
+    {
+        return $this->lieuxIdlieu;
+    }
+
+    public function setLieuxIdlieu(int $lieuxIdlieu): self
+    {
+        $this->lieuxIdlieu = $lieuxIdlieu;
 
         return $this;
     }

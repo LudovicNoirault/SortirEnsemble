@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Inscriptions
  *
- * @ORM\Table(name="inscriptions", indexes={@ORM\Index(name="FK_participants", columns={"participants_idParticipant"}), @ORM\Index(name="FK_sorties", columns={"sorties_idSortie"})})
+ * @ORM\Table(name="inscriptions", indexes={@ORM\Index(name="FK_sorties", columns={"sorties_idSortie"}), @ORM\Index(name="FK_participants", columns={"participants_idParticipant"})})
  * @ORM\Entity
  */
 class Inscriptions
@@ -29,24 +29,18 @@ class Inscriptions
     private $dateInscription;
 
     /**
-     * @var \Participants
+     * @var int
      *
-     * @ORM\ManyToOne(targetEntity="Participants")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="participants_idParticipant", referencedColumnName="idParticipant")
-     * })
+     * @ORM\Column(name="sorties_idSortie", type="integer", nullable=false)
      */
-    private $participantsparticipant;
+    private $sortiesIdsortie;
 
     /**
-     * @var \Sorties
+     * @var int
      *
-     * @ORM\ManyToOne(targetEntity="Sorties")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="sorties_idSortie", referencedColumnName="idSortie")
-     * })
+     * @ORM\Column(name="participants_idParticipant", type="integer", nullable=false)
      */
-    private $sortiessortie;
+    private $participantsIdparticipant;
 
     public function getIdinscriptions(): ?int
     {
@@ -65,26 +59,26 @@ class Inscriptions
         return $this;
     }
 
-    public function getParticipantsparticipant(): ?Participants
+    public function getSortiesIdsortie(): ?int
     {
-        return $this->participantsparticipant;
+        return $this->sortiesIdsortie;
     }
 
-    public function setParticipantsparticipant(?Participants $participantsparticipant): self
+    public function setSortiesIdsortie(int $sortiesIdsortie): self
     {
-        $this->participantsparticipant = $participantsparticipant;
+        $this->sortiesIdsortie = $sortiesIdsortie;
 
         return $this;
     }
 
-    public function getSortiessortie(): ?Sorties
+    public function getParticipantsIdparticipant(): ?int
     {
-        return $this->sortiessortie;
+        return $this->participantsIdparticipant;
     }
 
-    public function setSortiessortie(?Sorties $sortiessortie): self
+    public function setParticipantsIdparticipant(int $participantsIdparticipant): self
     {
-        $this->sortiessortie = $sortiessortie;
+        $this->participantsIdparticipant = $participantsIdparticipant;
 
         return $this;
     }
