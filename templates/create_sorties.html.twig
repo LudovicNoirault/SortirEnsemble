@@ -1,2 +1,10 @@
 {# templates/create_sorties.html.twig #}
-{{ form(form) }}
+{% extends 'base.html.twig' %}
+
+{% block title %}Création de sortie{% endblock %}
+
+{% block body %}
+    <h2 class="page-title">Création de sortie</h2>
+    <p>Remplissez les champs pour créer une sortie</p>
+	{{ form(form) }}
+{% endblock %}
