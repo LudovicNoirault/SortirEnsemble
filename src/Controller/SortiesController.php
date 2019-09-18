@@ -27,10 +27,34 @@ class SortiesController extends AbstractController
     /** 
     * @Route("/sorties/create", name="sortie_create")
     */
-    public function createSortie()
+    public function createSortie(Request $request)
     {
-        $request = new Request();
-        return $this->new($request);
+        // creates a sorties object and initializes some data for this example
+        $sorties = new Sorties();
+        $form = $this->createForm(SortiesForm::class, $sorties);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $form->getData() holds the submitted values
+            // but, the original `$task` variable has also been updated
+
+            $em = $this->getDoctrine()->getManager();
+            
+            $em->persist($sorties);
+            $em->flush();
+
+            // ... perform some action, such as saving the task to the database
+            // for example, if Task is a Doctrine entity, save it!
+            // $entityManager = $this->getDoctrine()->getManager();
+            // $entityManager->persist($task);
+            // $entityManager->flush();
+            return $this->redirectToRoute('index');
+        }
+
+        return $this->render('create_sorties.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     /** 
@@ -74,51 +98,6 @@ class SortiesController extends AbstractController
 
     public function new(Request $request)
     {
-        // creates a sorties object and initializes some data for this example
-        $sorties = new Sorties();
-        $form = $this->createForm(SortiesForm::class, $sorties);
-
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            // $form->getData() holds the submitted values
-            // but, the original `$task` variable has also been updated
-            $submitted_data = $form->getData();
-            $nom = $submitted_data['nom'];
-            $datedebut = $submitted_data['datedebut'];
-            $duree = $submitted_data['duree'];
-            $datecloture = $submitted_data['datecloture'];
-            $nbinscriptionsmax = $submitted_data['nbinscriptionsmax'];
-            $descriptioninfos = $submitted_data['descriptioninfos'];
-            $urlPhoto = $submitted_data['urlPhotos'];
-            $organisateur = $submitted_data['organisateur'];
-            $etatsetat = $submitted_data['etatsetat'];
-            $lieuxlieu = $submitted_data['lieuxlieu'];
-            $sorties->setNom($nom);
-            $sorties->setDatedebut($datedebut);
-            $sorties->setDuree($duree);
-            $sorties->setDatecloture($datecloture);
-            $sorties->setNbinscriptionsmax($nbinscriptionsmax);
-            $sorties->setDescriptioninfos($descriptioninfos);
-            $sorties->setUrlphoto($urlPhoto);
-            $sorties->setOrganisateur($organisateur);
-            $sorties->setEtatsetat($etatsetat);
-            $sorties->setLieuxlieu($lieuxlieu);
-
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($sorties);
-            $em->flush();
-
-            // ... perform some action, such as saving the task to the database
-            // for example, if Task is a Doctrine entity, save it!
-            // $entityManager = $this->getDoctrine()->getManager();
-            // $entityManager->persist($task);
-            // $entityManager->flush();
-
-        return $this->redirectToRoute('task_success');
-        }
-
-        return $this->render('create_sorties.html.twig', [
-            'form' => $form->createView(),
-        ]);
+        
     }
 }
