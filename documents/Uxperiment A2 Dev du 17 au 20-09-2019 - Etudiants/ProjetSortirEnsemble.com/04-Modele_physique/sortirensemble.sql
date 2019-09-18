@@ -120,7 +120,6 @@ CREATE TABLE IF NOT EXISTS `sorties` (
   `datecloture` datetime NOT NULL,
   `nbinscriptionsmax` int(11) NOT NULL,
   `descriptioninfos` varchar(500) DEFAULT NULL,
-  `etatsortie` int(11) DEFAULT NULL,
   `urlPhoto` varchar(250) DEFAULT NULL,
   `organisateur` int(11) NOT NULL,
   `lieux_idLieu` int(11) NOT NULL,
