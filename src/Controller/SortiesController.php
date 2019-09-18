@@ -54,7 +54,14 @@ class SortiesController extends AbstractController
     */
     public function singleSortie($id)
     {
-        return $this->render('sorties/singleSortie.html.twig');
+        $sortie = $this->getDoctrine()->getRepository('App\Entity\Sorties')->find($id);
+
+        if (!$sortie) {
+            throw $this->createNotFoundException(
+            'There are no sorties with the following id: ' . $id);
+        }
+
+        return $this->render('sorties/read_one_sorties.html.twig', array('sortie' => $sortie));
     }
     /** 
     * @Route("/sorties/{id}/update", name="sortie_update")
@@ -66,7 +73,7 @@ class SortiesController extends AbstractController
 
         if (!$sorties) {
                 throw $this->createNotFoundException(
-                'There are no articles with the following id: ' . $id
+                'There are no sorties with the following id: ' . $id
                 );
         }
         $form = $this->createForm(SortiesUpdateForm::class, $sorties);
@@ -96,7 +103,7 @@ class SortiesController extends AbstractController
         $sorties = $em->getRepository('App\Entity\Sorties')->find($id);
         if (!$sorties) {
             throw $this->createNotFoundException(
-                'There are no articles with the following id: ' . $id
+                'There are no sorties with the following id: ' . $id
             );
         }
 
