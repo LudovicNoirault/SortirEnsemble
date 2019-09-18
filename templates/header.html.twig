@@ -1,8 +1,26 @@
 <header>
-	<div>logo</div>
+	<div class="logo-box"><img src="{{ asset("images/logo/SortirEnsemble.png") }}" class="logo-item"></div>
 	<nav class="header-nav">
 		<ul class="header-nav-box">
-			<li class="header-nav-item"></li>	
+			{% if app.request.pathinfo == '/index' %}
+			<li class="header-nav-item">
+				<a class="header-nav-link" href="{{ path('index') }}">Villes</a>
+			</li>
+			<li class="header-nav-item">
+				<a class="header-nav-link" href="{{ path('index') }}">Sites</a>
+			</li>
+			{% endif %}
+			<li class="header-nav-item">
+				<a class="header-nav-link" href="{{ path('index') }}">Accueil</a>
+			</li>
+			<li class="header-nav-item">
+				<a class="header-nav-link" href="{{ path('index') }}">Profil</a>
+			</li>
+			<li class="header-nav-item">
+				{% if app.request.pathinfo == '/index' %}<a class="header-nav-link" href="{{ path('index') }}">Se connecter</a>
+				{% else %}<a class="header-nav-link" href="{{ path('index') }}">Se déconnecter</a>
+				{% endif %}
+			</li>
 		</ul>
 	</nav>
 </header>

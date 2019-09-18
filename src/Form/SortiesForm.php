@@ -30,19 +30,12 @@ class SortiesForm extends AbstractType
             ->add('nbinscriptionsmax', NumberType::class)
             ->add('descriptioninfos', TextType::class)
             ->add('urlPhoto', TextType::class)
-            ->add('organisateur', TextType::class)
-            ->add('lieuxlieu', NumberType::class)
-            ->add('etatsetat', NumberType::class)
-            ->add('nbinscriptionsmax', NumberType::class)
+            ->add('organisateur', NumberType::class)
+            ->add('lieuxIdlieu', NumberType::class)
+            ->add('etatsIdetat', NumberType::class)
             ->add('save', SubmitType::class, ['label' => 'Send'])
         ;
-}
-
-public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults([
-            'data_class' => Sorties::class,
-        ]);
     }
+
 
 }
