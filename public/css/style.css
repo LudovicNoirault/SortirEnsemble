@@ -32,6 +32,7 @@ body, html, header, footer, main, section, article, aside, div, span, p, a, ul, 
 	--main-txt-color: #999;
 	--main-txt-color-hover: #fff;
 	--main-bg-color: #333;
+	--element-color: #E68825;
 }
 /*---------------------------------------
 	- FONT FACE
@@ -39,6 +40,10 @@ body, html, header, footer, main, section, article, aside, div, span, p, a, ul, 
 @font-face {
     font-family: 'munk';
     src: url("../fonts/munk5/Munk5Black.ttf");
+}
+@font-face {
+    font-family: 'modern';
+    src: url("../fonts/modernM/modernM.ttf");
 }
 /*---------------------------------------
 	- KEYFRAMES
@@ -53,39 +58,77 @@ body {
 	min-height: 100vh;
 	background-color: var(--main-bg-color);
 	color: var(--main-txt-color);
-	font-family: 'munk';
+	font-family: 'modern';
 	position: relative;
 }
 /*---------------------------------------
 	- HEADER
 ---------------------------------------*/
-.header-main {
+header {
 	display: flex;
-	flex-direction: column;
-	height: 5rem;
 	width: 100%;
 	background-color: rgba(255, 255, 255, 0.1);
+	border-bottom: 2px solid var(--element-color);
+	box-shadow: 0 0 1rem 0 #000;
+}
+.logo-box {
+	height: 10rem;
+	padding: 1rem 4rem 0 4rem;
+}
+.logo-item {
+	width: auto;
+	height: 100%;
+}
+.header-nav {
+	display: flex;
+	width: 100%;
+	align-items: flex-end;
+}
+.header-nav-box {
+	display: flex;
+	width: 100%;
+	justify-content: flex-end;
+}
+.header-nav-item {
+	padding: 0.5rem 1rem;
+}
+.header-nav-link {
+	color: #ddd;
+	font-size: 1.5rem;
+	transition: 0.3s;
+}
+.header-nav-link:hover {
+	color: var(--element-color);
+	text-shadow: 0 0 0.2rem #000;
+	transition: 0.3s;
 }
 /*---------------------------------------
 	- MAIN
 ---------------------------------------*/
 main {
 	display: flex;
+	width: 100%;
+	min-height: calc(100vh - 12rem);
+	padding: 2rem 8rem 4rem 8rem;
+	background-image: url('../images/logo/dxfcg.png');
 }
 /*---------------------------------------
 	- FOOTER
 ---------------------------------------*/
-.footer-main {
+footer {
 	position: absolute;
 	bottom: 0;
 	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: 100%;
-	height: 5rem;
+	height: 2rem;
 	background-color: rgba(255, 255, 255, 0.1);
+	border-top: 2px solid var(--element-color);
+	box-shadow: 0 0 1rem 0 #000;
 }
-.footer-svg {
-	width: 4.5rem;
-	height: 4.5rem;
+footer p {
+	color: #ddd;
 }
 /*---------------------------------------
 	- MEDIA QUERIES
