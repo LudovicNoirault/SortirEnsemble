@@ -82,7 +82,31 @@ class SortiesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             // $form->getData() holds the submitted values
             // but, the original `$task` variable has also been updated
-            $sorties = $form->getData();
+            $submitted_data = $form->getData();
+            $nom = $submitted_data['nom'];
+            $datedebut = $submitted_data['datedebut'];
+            $duree = $submitted_data['duree'];
+            $datecloture = $submitted_data['datecloture'];
+            $nbinscriptionsmax = $submitted_data['nbinscriptionsmax'];
+            $descriptioninfos = $submitted_data['descriptioninfos'];
+            $urlPhoto = $submitted_data['urlPhotos'];
+            $organisateur = $submitted_data['organisateur'];
+            $etatsetat = $submitted_data['etatsetat'];
+            $lieuxlieu = $submitted_data['lieuxlieu'];
+            $sorties->setNom($nom);
+            $sorties->setDatedebut($datedebut);
+            $sorties->setDuree($duree);
+            $sorties->setDatecloture($datecloture);
+            $sorties->setNbinscriptionsmax($nbinscriptionsmax);
+            $sorties->setDescriptioninfos($descriptioninfos);
+            $sorties->setUrlphoto($urlPhoto);
+            $sorties->setOrganisateur($organisateur);
+            $sorties->setEtatsetat($etatsetat);
+            $sorties->setLieuxlieu($lieuxlieu);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($sorties);
+            $em->flush();
 
             // ... perform some action, such as saving the task to the database
             // for example, if Task is a Doctrine entity, save it!

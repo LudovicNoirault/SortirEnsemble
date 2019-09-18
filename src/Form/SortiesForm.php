@@ -3,7 +3,7 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -18,20 +18,22 @@ class SortiesForm extends AbstractType
     {
         $builder
             ->add('nom', TextType::class)
-            ->add('datedebut', DateType::class, [
+            ->add('datedebut', DateTimeType::class, [
                 'input'  => 'datetime',
-                'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd',
+                'widget' => 'single_text'
                 ])
             ->add('duree', NumberType::class)
-            ->add('datecloture', DateType::class, [
+            ->add('datecloture', DateTimeType::class, [
                 'input'  => 'datetime',
-                'widget' => 'single_text',
-                'format' => 'yyyy-MM-dd',
+                'widget' => 'single_text'
                 ])
             ->add('nbinscriptionsmax', NumberType::class)
             ->add('descriptioninfos', TextType::class)
             ->add('urlPhoto', TextType::class)
+            ->add('organisateur', TextType::class)
+            ->add('lieuxlieu', NumberType::class)
+            ->add('etatsetat', NumberType::class)
+            ->add('nbinscriptionsmax', NumberType::class)
             ->add('save', SubmitType::class, ['label' => 'Send'])
         ;
 }

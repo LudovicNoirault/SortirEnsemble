@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mar. 17 sep. 2019 à 14:28
+-- Généré le :  mer. 18 sep. 2019 à 11:34
 -- Version du serveur :  5.7.21
 -- Version de PHP :  7.2.4
 
@@ -30,10 +30,19 @@ SET time_zone = "+00:00";
 
 DROP TABLE IF EXISTS `etats`;
 CREATE TABLE IF NOT EXISTS `etats` (
-  `idEtat` int(11) NOT NULL,
+  `idEtat` int(11) NOT NULL AUTO_INCREMENT,
   `libelle` varchar(30) NOT NULL,
   PRIMARY KEY (`idEtat`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `etats`
+--
+
+INSERT INTO `etats` (`idEtat`, `libelle`) VALUES
+(1, 'Active'),
+(2, 'Annulee'),
+(3, 'Terminee');
 
 -- --------------------------------------------------------
 
@@ -60,15 +69,22 @@ CREATE TABLE IF NOT EXISTS `inscriptions` (
 
 DROP TABLE IF EXISTS `lieux`;
 CREATE TABLE IF NOT EXISTS `lieux` (
-  `idLieu` int(11) NOT NULL,
+  `idLieu` int(11) NOT NULL AUTO_INCREMENT,
   `nom_lieu` varchar(30) NOT NULL,
-  `rue` varchar(30) DEFAULT NULL,
+  `rue` varchar(255) DEFAULT NULL,
   `latitude` double DEFAULT NULL,
   `longitude` double DEFAULT NULL,
   `villes_idVille` int(11) NOT NULL,
   PRIMARY KEY (`idLieu`),
   KEY `FK_villes` (`villes_idVille`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `lieux`
+--
+
+INSERT INTO `lieux` (`idLieu`, `nom_lieu`, `rue`, `latitude`, `longitude`, `villes_idVille`) VALUES
+(1, 'IMIE', '132 Avenue de Lattre de Tassigny, 49000 Angers', 47.447784, -0.539066, 1);
 
 -- --------------------------------------------------------
 
@@ -78,16 +94,13 @@ CREATE TABLE IF NOT EXISTS `lieux` (
 
 DROP TABLE IF EXISTS `participants`;
 CREATE TABLE IF NOT EXISTS `participants` (
-  `idParticipant` int(11) NOT NULL,
-  `pseudo` varchar(30) NOT NULL,
+  `idParticipant` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(30) NOT NULL,
   `prenom` varchar(30) NOT NULL,
   `telephone` varchar(15) DEFAULT NULL,
-  `mail` varchar(20) NOT NULL,
   `actif` tinyint(4) NOT NULL,
   `sites_idSite` int(11) NOT NULL,
   PRIMARY KEY (`idParticipant`),
-  UNIQUE KEY `participants_pseudo_uk` (`pseudo`),
   KEY `FK_sites` (`sites_idSite`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -99,10 +112,11 @@ CREATE TABLE IF NOT EXISTS `participants` (
 
 DROP TABLE IF EXISTS `sites`;
 CREATE TABLE IF NOT EXISTS `sites` (
-  `idSite` int(11) NOT NULL,
+  `idSite` int(11) NOT NULL AUTO_INCREMENT,
   `nom_site` varchar(30) NOT NULL,
   `lieux_idLieu` int(11) NOT NULL,
-  PRIMARY KEY (`idSite`)
+  PRIMARY KEY (`idSite`),
+  KEY `FK_lieux2` (`lieux_idLieu`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -113,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `sites` (
 
 DROP TABLE IF EXISTS `sorties`;
 CREATE TABLE IF NOT EXISTS `sorties` (
-  `idSortie` int(11) NOT NULL,
+  `idSortie` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(30) NOT NULL,
   `datedebut` datetime NOT NULL,
   `duree` int(11) DEFAULT NULL,
@@ -138,41 +152,18 @@ CREATE TABLE IF NOT EXISTS `sorties` (
 
 DROP TABLE IF EXISTS `villes`;
 CREATE TABLE IF NOT EXISTS `villes` (
-  `idVille` int(11) NOT NULL,
+  `idVille` int(11) NOT NULL AUTO_INCREMENT,
   `nom_ville` varchar(30) NOT NULL,
   `code_postal` varchar(10) NOT NULL,
   PRIMARY KEY (`idVille`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
--- Contraintes pour les tables déchargées
+-- Déchargement des données de la table `villes`
 --
 
---
--- Contraintes pour la table `inscriptions`
---
-ALTER TABLE `inscriptions`
-  ADD CONSTRAINT `FK_participants` FOREIGN KEY (`participants_idParticipant`) REFERENCES `participants` (`idParticipant`),
-  ADD CONSTRAINT `FK_sorties` FOREIGN KEY (`sorties_idSortie`) REFERENCES `sorties` (`idSortie`);
-
---
--- Contraintes pour la table `lieux`
---
-ALTER TABLE `lieux`
-  ADD CONSTRAINT `FK_villes` FOREIGN KEY (`villes_idVille`) REFERENCES `villes` (`idVille`);
-
---
--- Contraintes pour la table `participants`
---
-ALTER TABLE `participants`
-  ADD CONSTRAINT `FK_sites` FOREIGN KEY (`sites_idSite`) REFERENCES `sites` (`idSite`);
-
---
--- Contraintes pour la table `sorties`
---
-ALTER TABLE `sorties`
-  ADD CONSTRAINT `FK_etats` FOREIGN KEY (`etats_idEtat`) REFERENCES `etats` (`idEtat`),
-  ADD CONSTRAINT `FK_lieux` FOREIGN KEY (`lieux_idLieu`) REFERENCES `lieux` (`idLieu`);
+INSERT INTO `villes` (`idVille`, `nom_ville`, `code_postal`) VALUES
+(1, 'Angers', '49000');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
