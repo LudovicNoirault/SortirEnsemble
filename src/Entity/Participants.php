@@ -4,14 +4,14 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\User;
-use Entity\User;
+use App\Entity\User as CoreUser;
 /**
  * Participants
  *
  * @ORM\Table(name="participants", uniqueConstraints={@ORM\UniqueConstraint(name="participants_pseudo_uk", columns={"pseudo"})}, indexes={@ORM\Index(name="FK_sites", columns={"sites_idSite"})})
  * @ORM\Entity
  */
-class Participants extends User
+class Participants extends CoreUser
 {
     /**
      * @var int
