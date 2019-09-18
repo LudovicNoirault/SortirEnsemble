@@ -4,15 +4,17 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 use App\Entity\Sorties;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\HttpFoundation\Request;
+use App\Entity\Lieux;
+use App\Entity\Sites;
+use App\Entity\Villes;
+
 use App\Form\SortiesForm;
-
-
+use App\Form\LieuxForm;
+use App\Form\SitesForm;
+use App\Form\VillesForm;
 
 class SortiesController extends AbstractController
 {
@@ -80,24 +82,108 @@ class SortiesController extends AbstractController
         return $this->render('sorties/cancelSortie.html.twig');
     }
 
-    /** 
-    * @Route("/villes", name="town")
+    // ---------------------- Lieux -------------------------------
+
+      /** 
+    * @Route("/lieux/create", name="createLieu")
     */
-    public function town()
+    public function CreateLieu(Request $request)
     {
-        return $this->render('sorties/villes.html.twig');
+        // creates a sorties object and initializes some data for this example
+        $lieu = new Lieux();
+        $form = $this->createForm(LieuxForm::class, $lieu);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $form->getData() holds the submitted values
+            // but, the original `$task` variable has also been updated
+
+            $em = $this->getDoctrine()->getManager();
+            
+            $em->persist($lieu);
+            $em->flush();
+
+            // ... perform some action, such as saving the task to the database
+            // for example, if Task is a Doctrine entity, save it!
+            // $entityManager = $this->getDoctrine()->getManager();
+            // $entityManager->persist($task);
+            // $entityManager->flush();
+            return $this->redirectToRoute('index');
+        }
+    
+        return $this->render('lieux/create_lieu.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
+    // ---------------------- Town -------------------------------
+
     /** 
-    * @Route("/sites", name="sites")
+    * @Route("/villes/create", name="createTown")
     */
-    public function sites()
+    public function CreateTown(Request $request)
     {
-        return $this->render('sites.html.twig');
+        // creates a sorties object and initializes some data for this example
+        $town = new Villes();
+        $form = $this->createForm(VillesForm::class, $town);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $form->getData() holds the submitted values
+            // but, the original `$task` variable has also been updated
+
+            $em = $this->getDoctrine()->getManager();
+            
+            $em->persist($town);
+            $em->flush();
+
+            // ... perform some action, such as saving the task to the database
+            // for example, if Task is a Doctrine entity, save it!
+            // $entityManager = $this->getDoctrine()->getManager();
+            // $entityManager->persist($task);
+            // $entityManager->flush();
+            return $this->redirectToRoute('index');
+        }
+    
+        return $this->render('villes/create_ville.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
-    public function new(Request $request)
+    // ---------------------- Site -------------------------------
+
+    /** 
+    * @Route("/sites/create", name="createSite")
+    */
+    public function CreateSite(Request $request)
     {
-        
+        // creates a sorties object and initializes some data for this example
+        $site = new Sites();
+        $form = $this->createForm(SitesForm::class, $site);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // $form->getData() holds the submitted values
+            // but, the original `$task` variable has also been updated
+
+            $em = $this->getDoctrine()->getManager();
+            
+            $em->persist($site);
+            $em->flush();
+
+            // ... perform some action, such as saving the task to the database
+            // for example, if Task is a Doctrine entity, save it!
+            // $entityManager = $this->getDoctrine()->getManager();
+            // $entityManager->persist($task);
+            // $entityManager->flush();
+            return $this->redirectToRoute('index');
+        }
+    
+        return $this->render('sites/create_site.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }
