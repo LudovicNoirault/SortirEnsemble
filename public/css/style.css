@@ -40,10 +40,6 @@ body, html, header, footer, main, section, article, aside, div, span, p, a, ul, 
     font-family: 'munk';
     src: url("../fonts/munk5/Munk5Black.ttf");
 }
-@font-face {
-    font-family: Teko, sans-serif;
-    src: url("./fonts/Teko/Teko-Regular.ttf") format("ttf");
-}
 /*---------------------------------------
 	- KEYFRAMES
 ---------------------------------------*/
@@ -69,55 +65,6 @@ body {
 	height: 5rem;
 	width: 100%;
 	background-color: rgba(255, 255, 255, 0.1);
-}
-.nav-header-block {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-}
-.nav-header-box {
-	display: flex;
-}
-.nav-header-box li {
-	padding: 0.5rem 1rem;
-}
-.nav-header-item {
-	color: var(--main-txt-color);
-	transition: 0.3s;
-}
-.nav-header-item:hover {
-	color: var(--main-txt-color-hover);
-	text-shadow: 0 0 0.3rem var(--main-txt-color-hover);
-	transition: 0.3s;
-}
-.header-logo {
-	position: absolute;
-	top: 0rem;
-	left: 50%;
-	transform: translateX(-50%);
-}
-.header-logo-1 {
-	width: 10rem;
-	height: 10rem;
-}
-.header-logo-2 {
-	width: 5rem;
-	height: 5rem;
-}
-.header-line {
-	width: 100%;
-	display: flex;
-}
-.header-line div {
-	width: 50%;
-	height: 2rem;
-	background-color: #b67b00;
-}
-.header-line-A {
-	transform: skewY(10deg);
-}
-.header-line-B {
-	transform: skewY(-10deg);
 }
 /*---------------------------------------
 	- MAIN
