@@ -12,7 +12,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 use App\Entity\Villes;
 
-class VillesCreateForm extends AbstractType
+class VillesUpdateForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {

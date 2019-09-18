@@ -14,7 +14,16 @@ use App\Form\LieuxUpdateForm;
 
 class LieuxController extends AbstractController
 {
-        // ---------------------- Lieux -------------------------------
+    // ---------------------- Lieux -------------------------------
+
+    /** 
+    * @Route("/lieux/", name="towns")
+    */
+    public function Lieux()
+    {
+        $lieux = $this->getDoctrine()->getRepository('App\Entity\Lieux')->findAll();
+        return $this->render('lieux/read_lieux.html.twig', array('lieux' => $lieux));
+    }
 
     /** 
     * @Route("/lieux/create", name="createLieu")
@@ -23,7 +32,7 @@ class LieuxController extends AbstractController
     {
         // creates a sorties object and initializes some data for this example
         $lieu = new Lieux();
-        $form = $this->createForm(LieuxForm::class, $lieu);
+        $form = $this->createForm(LieuxCreateForm::class, $lieu);
 
         $form->handleRequest($request);
 

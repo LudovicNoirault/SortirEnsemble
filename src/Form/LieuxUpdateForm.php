@@ -10,15 +10,18 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-use App\Entity\Villes;
+use App\Entity\Lieux;
 
-class VillesCreateForm extends AbstractType
+class LieuxUpdateForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nomVille', TextType::class, ['label' => 'Nom de la ville'])
-            ->add('codePostal', TextType::class, ['label' => 'Code postal'])
+            ->add('nomlieu', TextType::class, ['label' => 'Nom du lieu'])
+            ->add('rue', TextType::class, ['label' => 'Rue'])
+            ->add('latitude', NumberType::class, ['label' => 'Position (Latitude)'])
+            ->add('longitude', NumberType::class, ['label' => 'Position (Longitude)'])
+            ->add('villesIdVille', NumberType::class, ['label' => 'Ville'])  
             ->add('save', SubmitType::class, ['label' => 'Enregistrer']);
     }
 }
