@@ -3,15 +3,15 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\User;
-use App\Entity\User as CoreUser;
+use FOS\UserBundle\Model\User as BaseUser;
+
 /**
  * Participants
  *
- * @ORM\Table(name="participants", uniqueConstraints={@ORM\UniqueConstraint(name="participants_pseudo_uk", columns={"pseudo"})}, indexes={@ORM\Index(name="FK_sites", columns={"sites_idSite"})})
+ * @ORM\Table(name="participants", indexes={@ORM\Index(name="FK_sites", columns={"sites_idSite"})})
  * @ORM\Entity
  */
-class Participants extends CoreUser
+class Participants extends BaseUser
 {
     /**
      * @var int
@@ -21,13 +21,6 @@ class Participants extends CoreUser
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $idparticipant;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="pseudo", type="string", length=30, nullable=false)
-     */
-    private $pseudo;
 
     /**
      * @var string
@@ -51,13 +44,6 @@ class Participants extends CoreUser
     private $telephone;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="mail", type="string", length=20, nullable=false)
-     */
-    private $mail;
-
-    /**
      * @var bool
      *
      * @ORM\Column(name="actif", type="boolean", nullable=false)
@@ -74,21 +60,16 @@ class Participants extends CoreUser
      */
     private $sitessite;
 
+
+    public function __construct()
+    {
+        parent::__construct();
+        // your own logic
+    }
+
     public function getIdparticipant(): ?int
     {
         return $this->idparticipant;
-    }
-
-    public function getPseudo(): ?string
-    {
-        return $this->pseudo;
-    }
-
-    public function setPseudo(string $pseudo): self
-    {
-        $this->pseudo = $pseudo;
-
-        return $this;
     }
 
     public function getNom(): ?string
@@ -127,18 +108,6 @@ class Participants extends CoreUser
         return $this;
     }
 
-    public function getMail(): ?string
-    {
-        return $this->mail;
-    }
-
-    public function setMail(string $mail): self
-    {
-        $this->mail = $mail;
-
-        return $this;
-    }
-
     public function getActif(): ?bool
     {
         return $this->actif;
@@ -162,6 +131,7 @@ class Participants extends CoreUser
 
         return $this;
     }
+
 
 
 }
