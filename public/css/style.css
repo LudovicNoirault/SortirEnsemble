@@ -138,11 +138,62 @@ header {
 ---------------------------------------*/
 main {
 	display: flex;
+	flex-direction: column;
+	align-items: center;
 	width: 100%;
 	min-height: calc(100vh - 12rem);
 	padding: 2rem 8rem 4rem 8rem;
 	background-image: url('../images/logo/dxfcg.png');
 	animation: backgroundslide linear infinite 60s;
+}
+.page-title {
+	text-transform: uppercase;
+	font-size: 2rem;
+	color: var(--element-color);
+}
+/*---------------------------------------
+	- lieux form
+---------------------------------------*/
+#lieux_form {
+	background: rgba(75, 75, 75, 0.6);
+	padding: 2rem;
+	border-radius: 0.5rem;
+	border-top: 2px solid var(--element-color);
+	box-shadow: 0 0.2rem 0.5rem -0.2rem #000;
+}
+#lieux_form div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+#lieux_form label {
+	margin: 0.5rem 0;
+}
+#lieux_form input {
+	margin-bottom: 1rem;
+	padding: 0.5rem;
+	width: 15rem;
+	border: none;
+	border-radius: 0;
+	box-shadow: inset 0 0.2rem 0.3rem 0 rgba(0, 0, 0, 0.2);
+	background: rgba(0, 0, 0, 0.1);
+}
+#lieux_form button {
+	padding: 1rem 3rem;
+	background: #333;
+	font-size: 1.3rem;
+	color: var(--element-color);
+	transition: 0.3s;
+	border: none;
+	box-shadow: 0 0.3rem 0.5rem -0.2rem #000;
+}
+#lieux_form button:hover {
+	padding: 1rem 4rem;
+	background: var(--element-color);
+	color: #fff;
+	text-shadow: 0 0 0.2rem #000;
+	transition: 0.3s;
+	box-shadow: 0 0.8rem 1rem -0.5rem #000;
 }
 /*---------------------------------------
 	- FOOTER
