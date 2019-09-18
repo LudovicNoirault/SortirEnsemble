@@ -51,21 +51,11 @@ class Participants extends BaseUser
     private $actif;
 
     /**
-     * @var \Sites
+     * @var int
      *
-     * @ORM\ManyToOne(targetEntity="Sites")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="sites_idSite", referencedColumnName="idSite")
-     * })
+     * @ORM\Column(name="sites_idSite", type="integer", nullable=false)
      */
-    private $sitessite;
-
-
-    public function __construct()
-    {
-        parent::__construct();
-        // your own logic
-    }
+    private $sitesIdsite;
 
     public function getIdparticipant(): ?int
     {
@@ -120,18 +110,17 @@ class Participants extends BaseUser
         return $this;
     }
 
-    public function getSitessite(): ?Sites
+    public function getSitesIdsite(): ?int
     {
-        return $this->sitessite;
+        return $this->sitesIdsite;
     }
 
-    public function setSitessite(?Sites $sitessite): self
+    public function setSitesIdsite(int $sitesIdsite): self
     {
-        $this->sitessite = $sitessite;
+        $this->sitesIdsite = $sitesIdsite;
 
         return $this;
     }
-
 
 
 }

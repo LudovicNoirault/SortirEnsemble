@@ -16,7 +16,7 @@ class RegistrationForm extends AbstractType
         $builder->add('prenom');
         $builder->add('telephone');
         $builder->add('actif');
-        $builder->add('sitessite', EntityType::class, [
+        $builder->add('sitesIdsite', EntityType::class, [
             'class' => Sites::class,
             'choice_label' => 'nomSite'
         ]);

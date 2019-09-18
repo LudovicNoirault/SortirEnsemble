@@ -78,24 +78,18 @@ class Sorties
     private $organisateur;
 
     /**
-     * @var \Etats
+     * @var int
      *
-     * @ORM\ManyToOne(targetEntity="Etats")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="etats_idEtat", referencedColumnName="idEtat")
-     * })
+     * @ORM\Column(name="lieux_idLieu", type="integer", nullable=false)
      */
-    private $etatsetat;
+    private $lieuxIdlieu;
 
     /**
-     * @var \Lieux
+     * @var int
      *
-     * @ORM\ManyToOne(targetEntity="Lieux")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="lieux_idLieu", referencedColumnName="idLieu")
-     * })
+     * @ORM\Column(name="etats_idEtat", type="integer", nullable=false)
      */
-    private $lieuxlieu;
+    private $etatsIdetat;
 
     public function getIdsortie(): ?int
     {
@@ -198,26 +192,26 @@ class Sorties
         return $this;
     }
 
-    public function getEtatsetat(): ?Etats
+    public function getLieuxIdlieu(): ?int
     {
-        return $this->etatsetat;
+        return $this->lieuxIdlieu;
     }
 
-    public function setEtatsetat(?Etats $etatsetat): self
+    public function setLieuxIdlieu(int $lieuxIdlieu): self
     {
-        $this->etatsetat = $etatsetat;
+        $this->lieuxIdlieu = $lieuxIdlieu;
 
         return $this;
     }
 
-    public function getLieuxlieu(): ?Lieux
+    public function getEtatsIdetat(): ?int
     {
-        return $this->lieuxlieu;
+        return $this->etatsIdetat;
     }
 
-    public function setLieuxlieu(?Lieux $lieuxlieu): self
+    public function setEtatsIdetat(int $etatsIdetat): self
     {
-        $this->lieuxlieu = $lieuxlieu;
+        $this->etatsIdetat = $etatsIdetat;
 
         return $this;
     }
