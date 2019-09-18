@@ -16,13 +16,22 @@ class VillesController extends AbstractController
         // ---------------------- Town -------------------------------
 
     /** 
+    * @Route("/villes/", name="towns")
+    */
+    public function Towns()
+    {
+        $towns = $this->getDoctrine()->getRepository('App\Entity\Villes')->findAll();
+        return $this->render('villes/read_villes.html.twig', array('villes' => $towns));
+    }
+
+    /** 
     * @Route("/villes/create", name="create_town")
     */
     public function CreateTown(Request $request)
     {
         // creates a sorties object and initializes some data for this example
         $town = new Villes();
-        $form = $this->createForm(VillesForm::class, $town);
+        $form = $this->createForm(VillesCreateForm::class, $town);
 
         $form->handleRequest($request);
 

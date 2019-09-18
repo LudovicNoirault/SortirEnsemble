@@ -111,6 +111,5 @@ class SortiesController extends AbstractController
         $em->flush();
 
         return $this->redirectToRoute('index');
-
     }
 }

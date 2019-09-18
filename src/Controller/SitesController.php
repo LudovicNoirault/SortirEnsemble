@@ -15,6 +15,16 @@ class SitesController extends AbstractController
 {
     // ---------------------- Site -------------------------------
 
+    
+    /** 
+    * @Route("/sites/", name="sites")
+    */
+    public function Sites()
+    {
+        $sites = $this->getDoctrine()->getRepository('App\Entity\Sites')->findAll();
+        return $this->render('sites/read_sites.html.twig', array('sites' => $sites));
+    }
+
     /**
     * @Route("/sites/create", name="createSite")
     */

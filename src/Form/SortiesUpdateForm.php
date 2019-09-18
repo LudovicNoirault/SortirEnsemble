@@ -36,6 +36,4 @@ class SortiesUpdateForm extends AbstractType
             ->add('save', SubmitType::class, ['label' => 'Send'])
         ;
     }
-
-
 }
