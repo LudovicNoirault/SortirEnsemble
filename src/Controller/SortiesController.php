@@ -72,7 +72,7 @@ class SortiesController extends AbstractController
                 throw $this->createNotFoundException(
                 'There are no articles with the following id: ' . $id
                 );
-            }
+        }
         $form = $this->createForm(SortiesUpdateForm::class, $sorties);
 
         $form->handleRequest($request);
@@ -96,7 +96,19 @@ class SortiesController extends AbstractController
     */
     public function cancelSortie($id)
     {
-        return $this->render('sorties/cancelSortie.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $sorties = $em->getRepository('App\Entity\Sorties')->find($id);
+        if (!$sorties) {
+            throw $this->createNotFoundException(
+                'There are no articles with the following id: ' . $id
+            );
+        }
+
+        $sorties->setEtatsIdetat('2');
+        $em->flush();
+
+        return $this->redirectToRoute('index');
+
     }
 
     // ---------------------- Lieux -------------------------------
