@@ -4,21 +4,27 @@
 		<ul class="header-nav-box">
 			{% if app.request.pathinfo == '/index' %}
 			<li class="header-nav-item">
+				<div class="header-nav-tri"></div>
 				<a class="header-nav-link" href="{{ path('index') }}">Villes</a>
 			</li>
 			<li class="header-nav-item">
+				<div class="header-nav-tri"></div>
 				<a class="header-nav-link" href="{{ path('index') }}">Sites</a>
 			</li>
 			{% endif %}
 			<li class="header-nav-item">
 				<a class="header-nav-link" href="{{ path('index') }}">Accueil</a>
+				<div class="header-nav-tri"></div>
 			</li>
 			<li class="header-nav-item">
 				<a class="header-nav-link" href="{{ path('index') }}">Profil</a>
+				<div class="header-nav-tri"></div>
 			</li>
 			<li class="header-nav-item">
 				{% if app.request.pathinfo == '/index' %}<a class="header-nav-link" href="{{ path('index') }}">Se connecter</a>
+				<div class="header-nav-tri"></div>
 				{% else %}<a class="header-nav-link" href="{{ path('index') }}">Se déconnecter</a>
+				<div class="header-nav-tri"></div>
 				{% endif %}
 			</li>
 		</ul>
