@@ -10,7 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
-use App\Form\SortiesForm;
+use App\Form\SortiesCreateForm;
+use App\Form\SortiesUpdateForm;
 
 
 
@@ -31,24 +32,17 @@ class SortiesController extends AbstractController
     {
         // creates a sorties object and initializes some data for this example
         $sorties = new Sorties();
-        $form = $this->createForm(SortiesForm::class, $sorties);
+        $form = $this->createForm(SortiesCreateForm::class, $sorties);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $form->getData() holds the submitted values
-            // but, the original `$task` variable has also been updated
 
             $em = $this->getDoctrine()->getManager();
             
             $em->persist($sorties);
             $em->flush();
 
-            // ... perform some action, such as saving the task to the database
-            // for example, if Task is a Doctrine entity, save it!
-            // $entityManager = $this->getDoctrine()->getManager();
-            // $entityManager->persist($task);
-            // $entityManager->flush();
             return $this->redirectToRoute('index');
         }
 
@@ -67,9 +61,32 @@ class SortiesController extends AbstractController
     /** 
     * @Route("/sorties/{id}/update", name="sortie_update")
     */
-    public function updateSortie($id)
+    public function updateSortie(Request $request, $id)
     {
-        return $this->render('sorties/updateSortie.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $sorties = $em->getRepository('App\Entity\Sorties')->find($id);
+
+        if (!$sorties) {
+                throw $this->createNotFoundException(
+                'There are no articles with the following id: ' . $id
+                );
+            }
+        $form = $this->createForm(SortiesUpdateForm::class, $sorties);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $sorties = $form->getData();
+            $em->flush();
+
+            return $this->redirectToRoute('index');
+        }
+
+        return $this->render('update_sorties.html.twig', [
+            'form' => $form->createView(),
+        ]);
+        
     }
 
     /** 

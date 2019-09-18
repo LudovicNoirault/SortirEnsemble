@@ -12,7 +12,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use App\Entity\Sorties;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SortiesForm extends AbstractType
+class SortiesCreateForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
