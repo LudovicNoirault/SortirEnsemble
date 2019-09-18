@@ -30,6 +30,10 @@ class SortiesForm extends AbstractType
             ->add('nbinscriptionsmax', NumberType::class)
             ->add('descriptioninfos', TextType::class)
             ->add('urlPhoto', TextType::class)
+            ->add('organisateur', TextType::class)
+            ->add('lieuxlieu', NumberType::class)
+            ->add('etatsetat', NumberType::class)
+            ->add('nbinscriptionsmax', NumberType::class)
             ->add('save', SubmitType::class, ['label' => 'Send'])
         ;
 }
