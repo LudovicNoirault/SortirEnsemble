@@ -50,7 +50,7 @@ class SitesController extends AbstractController
             // $entityManager = $this->getDoctrine()->getManager();
             // $entityManager->persist($task);
             // $entityManager->flush();
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('sites');
         }
     
         return $this->render('sites/create_site.html.twig', [
@@ -71,7 +71,7 @@ class SitesController extends AbstractController
                 'Pas de site pour l\'id ' . $id
                 );
         }
-        $form = $this->createForm(SitesUpdateForm::class, $town);
+        $form = $this->createForm(SitesUpdateForm::class, $site);
 
         $form->handleRequest($request);
 
@@ -80,10 +80,10 @@ class SitesController extends AbstractController
             $ville = $form->getData();
             $em->flush();
 
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('sites');
         }
 
-        return $this->render('update_site.html.twig', [
+        return $this->render('sites/update_site.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -104,6 +104,6 @@ class SitesController extends AbstractController
         $em->remove($id);
         $em->flush();
 
-        return $this->redirectToRoute('index');
+        return $this->redirectToRoute('sites');
     }
 }

@@ -49,7 +49,7 @@ class VillesController extends AbstractController
             // $entityManager = $this->getDoctrine()->getManager();
             // $entityManager->persist($task);
             // $entityManager->flush();
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('towns');
         }
     
         return $this->render('villes/create_ville.html.twig', [
@@ -79,7 +79,7 @@ class VillesController extends AbstractController
             $ville = $form->getData();
             $em->flush();
 
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('towns');
         }
 
         return $this->render('villes/update_ville.html.twig', [

@@ -42,8 +42,8 @@ th {
     {% endif %}
     </td>
     <td>{{ sortie.organisateur }}</td>
-    <td>{{ sortie.lieuxIdlieu }}</td>
-    <td>{{ sortie.etatsIdetat }}</td>
+    <td>{{ sortie.lieuxlieu.nomLieu }}</td>
+    <td>{{ sortie.etatsetat.libelle }}</td>
   </tr>
   {% endfor %}
   </tbody>

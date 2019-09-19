@@ -2,13 +2,16 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+
 use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * Participants
  *
- * @ORM\Table(name="participants", indexes={@ORM\Index(name="FK_sites", columns={"sites_idSite"})})
+ * @ORM\Table(name="participants", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_71697092A0D96FBF", columns={"email_canonical"}), @ORM\UniqueConstraint(name="UNIQ_7169709292FC23A8", columns={"username_canonical"}), @ORM\UniqueConstraint(name="UNIQ_71697092C05FB297", columns={"confirmation_token"})})
  * @ORM\Entity
  */
 class Participants extends BaseUser
@@ -20,7 +23,7 @@ class Participants extends BaseUser
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idparticipant;
+    private $idParticipant;
 
     /**
      * @var string
@@ -51,11 +54,15 @@ class Participants extends BaseUser
     private $actif;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="sites_idSite", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Sites", inversedBy="utilisateursSite")
+     * @ORM\JoinColumn(name="id_site", referencedColumnName="idSite")
      */
-    private $sitesIdsite;
+    private $siteAffiliation;
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
 
     public function getIdparticipant(): ?int
     {
@@ -110,17 +117,15 @@ class Participants extends BaseUser
         return $this;
     }
 
-    public function getSitesIdsite(): ?int
+    public function getSiteAffiliation(): ?Sites
     {
-        return $this->sitesIdsite;
+        return $this->siteAffiliation;
     }
 
-    public function setSitesIdsite(int $sitesIdsite): self
+    public function setSiteAffiliation(?Sites $siteAffiliation): self
     {
-        $this->sitesIdsite = $sitesIdsite;
+        $this->siteAffiliation = $siteAffiliation;
 
         return $this;
     }
-
-
 }

@@ -8,9 +8,12 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 use App\Entity\Lieux;
+use App\Entity\Villes;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class LieuxCreateForm extends AbstractType
 {
@@ -21,7 +24,7 @@ class LieuxCreateForm extends AbstractType
             ->add('rue', TextType::class, ['label' => 'Rue'])
             ->add('latitude', NumberType::class, ['label' => 'Position (Latitude)'])
             ->add('longitude', NumberType::class, ['label' => 'Position (Longitude)'])
-            ->add('villesIdVille', NumberType::class, ['label' => 'Ville'])  
+            ->add('villesville', EntityType::class, ['label' => 'Ville', 'class' => Villes::class,'choice_label' => 'nomVille'])
             ->add('save', SubmitType::class, ['label' => 'Enregistrer']);
     }
 }

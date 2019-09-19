@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -19,7 +21,7 @@ class Sites
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idsite;
+    private $idSite;
 
     /**
      * @var string
@@ -29,11 +31,24 @@ class Sites
     private $nomSite;
 
     /**
-     * @var int
+     * @var \Lieux
      *
-     * @ORM\Column(name="lieux_idLieu", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Lieux")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="lieux_idLieu", referencedColumnName="idLieu")
+     * })
      */
-    private $lieuxIdlieu;
+    private $lieuxlieu;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Participants", mappedBy="siteAffiliation")
+     */
+    private $utilisateursSite;
+
+    public function __construct()
+    {
+        $this->utilisateursSite = new ArrayCollection();
+    }
 
     public function getIdsite(): ?int
     {
@@ -52,17 +67,46 @@ class Sites
         return $this;
     }
 
-    public function getLieuxIdlieu(): ?int
+    public function getLieuxlieu(): ?Lieux
     {
-        return $this->lieuxIdlieu;
+        return $this->lieuxlieu;
     }
 
-    public function setLieuxIdlieu(int $lieuxIdlieu): self
+    public function setLieuxlieu(?Lieux $lieuxlieu): self
     {
-        $this->lieuxIdlieu = $lieuxIdlieu;
+        $this->lieuxlieu = $lieuxlieu;
 
         return $this;
     }
 
+    /**
+     * @return Collection|Participants[]
+     */
+    public function getUtilisateursSite(): Collection
+    {
+        return $this->utilisateursSite;
+    }
 
+    public function addUtilisateursSite(Participants $utilisateursSite): self
+    {
+        if (!$this->utilisateursSite->contains($utilisateursSite)) {
+            $this->utilisateursSite[] = $utilisateursSite;
+            $utilisateursSite->setSiteAffiliation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUtilisateursSite(Participants $utilisateursSite): self
+    {
+        if ($this->utilisateursSite->contains($utilisateursSite)) {
+            $this->utilisateursSite->removeElement($utilisateursSite);
+            // set the owning side to null (unless already changed)
+            if ($utilisateursSite->getSiteAffiliation() === $this) {
+                $utilisateursSite->setSiteAffiliation(null);
+            }
+        }
+
+        return $this;
+    }
 }

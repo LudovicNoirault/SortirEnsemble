@@ -7,7 +7,7 @@ th {
 }
 </style>
 
-<h1>Sortie selected : Sortie number {{ sortie.idSortie }}</h1>
+<h1>Sortie selected : Sortie number {{ sortie.idsortie }}</h1>
 
 <table>
   <tbody>
@@ -38,8 +38,8 @@ th {
     <tr>
       <th>Photo</th>
     <td>
-    {% if sortie.urlPhoto != "" %}
-      <a href="http://{{ sortie.urlPhoto}}">Voir la photo</a>
+    {% if sortie.urlphoto != "" %}
+      <a href="http://{{ sortie.urlphoto}}">Voir la photo</a>
     {% else %}
       No photo found
     {% endif %}
@@ -51,11 +51,11 @@ th {
     </tr>
     <tr>
       <th>Numéro du lieu</th>
-    <td>{{ sortie.lieuxIdlieu }}</td>
+    <td>{{ sortie.lieuxlieu.nomLieu }}</td>
     </tr>
     <tr>
       <th>Etat</th>
-    <td>{{ sortie.etatsIdetat }}</td>
+    <td>{{ sortie.etatsetat.libelle }}</td>
     </tr>
   </tbody>
 </table>
