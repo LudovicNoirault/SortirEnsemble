@@ -1,0 +1,61 @@
+<style>
+th, td {
+  padding: 10px;
+}
+th {
+  text-align: right;
+}
+</style>
+
+<h1>Sortie selected : Sortie number {{ sortie.idSortie }}</h1>
+
+<table>
+  <tbody>
+    <tr>
+      <th>Nom </th>
+    <td>{{ sortie.nom }}</td>
+    </tr>
+    <tr>
+      <th>Date de début</th>
+    <td>{{ sortie.datedebut|date('Y-m-d H:i:s') }}</td>
+    </tr>
+    <tr>
+      <th>Durée</th>
+    <td>{{ sortie.duree }}</td>
+    </tr>
+    <tr>
+      <th>Date de cloture</th>
+    <td>{{ sortie.datecloture|date('Y-m-d H:i:s') }}</td>
+    </tr>
+    <tr>
+      <th>Nombre d'inscrits maximum</th>
+    <td>{{ sortie.nbinscriptionsmax }}</td>
+    </tr>
+    <tr>
+      <th>Description de la sortie</th>
+    <td>{{ sortie.descriptioninfos }}</td>
+    </tr>
+    <tr>
+      <th>Photo</th>
+    <td>
+    {% if sortie.urlPhoto != "" %}
+      <a href="http://{{ sortie.urlPhoto}}">Voir la photo</a>
+    {% else %}
+      No photo found
+    {% endif %}
+    </td>
+    </tr>
+    <tr>
+      <th>Numéro de l'organisateur</th>
+      <td>{{ sortie.organisateur }}</td>
+    </tr>
+    <tr>
+      <th>Numéro du lieu</th>
+    <td>{{ sortie.lieuxIdlieu }}</td>
+    </tr>
+    <tr>
+      <th>Etat</th>
+    <td>{{ sortie.etatsIdetat }}</td>
+    </tr>
+  </tbody>
+</table>
