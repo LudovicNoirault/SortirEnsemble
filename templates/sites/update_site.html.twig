@@ -1,1 +1,11 @@
-{{ form(form) }}
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification de site{% endblock %}
+
+{% block body %}
+    <h2 class="page-title">Modification de site</h2>
+    <p>Remplissez les champs pour modifier un site</p>
+	<div class="form-box">
+		{{ form(form) }}
+	</div>
+{% endblock %}

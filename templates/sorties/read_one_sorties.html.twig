@@ -1,13 +1,11 @@
-<style>
-th, td {
-  padding: 10px;
-}
-th {
-  text-align: right;
-}
-</style>
+{% extends 'base.html.twig' %}
 
-<h1>Sortie selected : Sortie number {{ sortie.idsortie }}</h1>
+{% block title %}Sortie : {{ sortie.nom }}{% endblock %}
+
+{% block body %}
+    <h2 class="page-title">Sortie : {{ sortie.nom }}</h2>
+    <h3 class="page-subtitle">Sortie number {{ sortie.idsortie }}</h3>
+  <div class="form-box">
 
 <table>
   <tbody>
@@ -59,3 +57,7 @@ th {
     </tr>
   </tbody>
 </table>
+
+
+  </div>
+{% endblock %}

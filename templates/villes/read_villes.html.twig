@@ -1,13 +1,13 @@
-<style>
-th, td {
-  padding: 10px;
-}
-th {
-  text-align: left;
-}
-</style>
+{% extends 'base.html.twig' %}
 
-<h1>All Villes</h1>
+{% block title %}Villes{% endblock %}
+
+{% block body %}
+    <h2 class="page-title">Retrouvez toutes nos villes</h2>
+      <h3 class="page-subtitle">ou</h3>
+      <a class="list-link" href="{{ path('create_town') }}">Enregistrez une ville</a>
+  <div class="form-box">
+
 
 {% if villes is not empty %}
 <table>
@@ -26,6 +26,11 @@ th {
   {% endfor %}
   </tbody>
 </table>
+<a class="list-button" href="{{ path('town_update') }}" title="Modifier">&#10810;</a>
+<a class="list-button" href="{{ path('ville_delete') }}" title="Supprimer">&#10811;</a>
 {% else %}
-  <p>No ville found.</p>
+  <p>Aucune ville trouvée</p>
 {% endif %}
+
+  </div>
+{% endblock %}

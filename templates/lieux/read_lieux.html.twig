@@ -1,13 +1,12 @@
-<style>
-th, td {
-  padding: 10px;
-}
-th {
-  text-align: left;
-}
-</style>
+{% extends 'base.html.twig' %}
 
-<h1>All Lieux</h1>
+{% block title %}Lieux{% endblock %}
+
+{% block body %}
+  <h2 class="page-title">Visualiser tout les lieux existants</h2>
+  <h3 class="page-subtitle">ou</h3>
+  <a class="list-link" href="{{ path('createLieu') }}">Enregistrez un lieu</a>
+    <div class="list-box">
 
 {% if lieux is not empty %}
 <table>
@@ -33,6 +32,12 @@ th {
   {% endfor %}
   </tbody>
 </table>
+<a class="list-button" href="{{ path('lieu_delete') }}" title="Modifier">&#10810;</a>
+<a class="list-button" href="{{ path('lieux_update') }}" title="Supprimer">&#10811;</a>
 {% else %}
-  <p>No lieu found.</p>
+  <p>Aucun lieu trouvé</p>
 {% endif %}
+
+
+    </div>
+{% endblock %}

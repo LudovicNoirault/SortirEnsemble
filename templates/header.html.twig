@@ -7,26 +7,28 @@
 		    </g>
 		</svg>
 		<ul id="header-nav-box" style="right: -20rem;">
-			{% if app.request.pathinfo == '/index' %}
+			{% if app.request.pathinfo != '/lol' %}
 			<li class="header-nav-item">
 				<div class="header-nav-tri"></div>
-				<a class="header-nav-link" href="{{ path('index') }}">Villes</a>
+				<a class="header-nav-link" href="{{ path('towns') }}">Villes</a>
 			</li>
 			<li class="header-nav-item">
 				<div class="header-nav-tri"></div>
-				<a class="header-nav-link" href="{{ path('index') }}">Sites</a>
+				<a class="header-nav-link" href="{{ path('sites') }}">Sites</a>
 			</li>
 			{% endif %}
 			<li class="header-nav-item">
 				<a class="header-nav-link" href="{{ path('index') }}">Accueil</a>
 				<div class="header-nav-tri"></div>
 			</li>
+			{% if is_granted('ROLE_USER') %}
 			<li class="header-nav-item">
-				<a class="header-nav-link" href="{{ path('index') }}">Profil</a>
+				<a class="header-nav-link" href="{{ path('user') }}">Profil</a>
 				<div class="header-nav-tri"></div>
 			</li>
+			{% endif %}
 			<li class="header-nav-item">
-				{% if app.request.pathinfo == '/index' %}<a class="header-nav-link" href="{{ path('index') }}">Se connecter</a>
+				{% if app.request.pathinfo != '/lol' %}<a class="header-nav-link" href="{{ path('index') }}">Se connecter</a>
 				<div class="header-nav-tri"></div>
 				{% else %}<a class="header-nav-link" href="{{ path('index') }}">Se déconnecter</a>
 				<div class="header-nav-tri"></div>

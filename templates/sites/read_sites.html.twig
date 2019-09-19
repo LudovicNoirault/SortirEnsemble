@@ -1,13 +1,12 @@
-<style>
-th, td {
-  padding: 10px;
-}
-th {
-  text-align: left;
-}
-</style>
+{% extends 'base.html.twig' %}
 
-<h1>All Sites</h1>
+{% block title %}Sites{% endblock %}
+
+{% block body %}
+    <h2 class="page-title">Visualiser tout les sites existants</h2>
+    <h3 class="page-subtitle">ou</h3>
+    <a class="list-link" href="{{ path('createSite') }}">Enregistrez un site</a>
+  <div class="list-box">
 
 {% if sites is not empty %}
 <table>
@@ -21,11 +20,16 @@ th {
   {% for site in sites %}
   <tr>
     <td>{{ site.nomSite }}</td>
-    <td>{{ site.lieuxlieu.nomLieu}}    </td>
+    <td>{{ site.lieuxlieu.nomLieu }}</td>
   </tr>
   {% endfor %}
   </tbody>
 </table>
+<a class="list-button" href="{{ path('site_update') }}" title="Modifier">&#10810;</a>
+<a class="list-button" href="{{ path('site_delete') }}" title="Supprimer">&#10811;</a>
 {% else %}
-  <p>No site found.</p>
+  <p>Aucun site trouvé</p>
 {% endif %}
+
+  </div>
+{% endblock %}
