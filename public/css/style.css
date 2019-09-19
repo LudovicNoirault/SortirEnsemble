@@ -154,22 +154,22 @@ main {
 /*---------------------------------------
 	- lieux form
 ---------------------------------------*/
-#lieux_form {
+.form-box form {
 	background: rgba(75, 75, 75, 0.6);
 	padding: 2rem;
 	border-radius: 0.5rem;
 	border-top: 2px solid var(--element-color);
 	box-shadow: 0 0.2rem 0.5rem -0.2rem #000;
 }
-#lieux_form div {
+.form-box form div {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
-#lieux_form label {
+.form-box form label {
 	margin: 0.5rem 0;
 }
-#lieux_form input {
+.form-box form input {
 	margin-bottom: 1rem;
 	padding: 0.5rem;
 	width: 15rem;
@@ -178,7 +178,7 @@ main {
 	box-shadow: inset 0 0.2rem 0.3rem 0 rgba(0, 0, 0, 0.2);
 	background: rgba(0, 0, 0, 0.1);
 }
-#lieux_form button {
+.form-box form button {
 	padding: 1rem 3rem;
 	background: #333;
 	font-size: 1.3rem;
@@ -187,7 +187,7 @@ main {
 	border: none;
 	box-shadow: 0 0.3rem 0.5rem -0.2rem #000;
 }
-#lieux_form button:hover {
+.form-box form button:hover {
 	padding: 1rem 4rem;
 	background: var(--element-color);
 	color: #fff;
