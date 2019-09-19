@@ -7,32 +7,32 @@ th {
 }
 </style>
 
-<h1>Sortie selected : User profile : $userData["username"]</h1>
+<h1>User profile : {{ participants.pseudo }}</h1>
 <table>
   <tbody>
     <tr>
       <th>Pseudo</th>
-    <td>$userData["username"]</td>
+    <td>{{ participants.pseudo }}</td>
     </tr>
     <tr>
       <th>Prénom</th>
-    <td>$userData["prenom"]</td>
+    <td>{{ participants.prenom }}</td>
     </tr>
     <tr>
       <th>Nom</th>
-    <td>$userData["nom"]</td>
+    <td>{{ participants.nom }}</td>
     </tr>
     <tr>
       <th>Téléphone</th>
-    <td>$userData["tel"]</td>
+    <td>{{ participants.telephone }}</td>
     </tr>
     <tr>
       <th>Mail</th>
-    <td>$userData["mail"]</td>
+    <td>{{ participants.participantUser.email }}</td>
     </tr>
     <tr>
       <th>Site d'affiliation</th>
-    <td>$userData["affi"]</td>
+    <td>{{ participants.siteAffiliation.nomSite }}</td>
     </tr>
   </tbody>
 </table>

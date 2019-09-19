@@ -32,8 +32,8 @@
   {% endfor %}
   </tbody>
 </table>
-<a class="list-button" href="{{ path('lieu_delete') }}" title="Modifier">&#10810;</a>
-<a class="list-button" href="{{ path('lieux_update') }}" title="Supprimer">&#10811;</a>
+<a class="list-button" href="{{ path('lieu_delete', lieux.idlieu) }}" title="Modifier">&#10810;</a>
+<a class="list-button" href="{{ path('lieux_update', lieux.idlieu) }}" title="Supprimer">&#10811;</a>
 {% else %}
   <p>Aucun lieu trouvé</p>
 {% endif %}

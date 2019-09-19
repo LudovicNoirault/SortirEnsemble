@@ -22,12 +22,14 @@
   <tr>
     <td>{{ ville.nomVille }}</td>
     <td>{{ ville.codePostal}}    </td>
+    <td><a class="list-button" href="{{ path('town_update', {id:ville.idville}) }}" title="Modifier">&#10810;</a></td>
+    <td><a class="list-button" href="{{ path('ville_delete', {id:ville.idville}) }}" title="Supprimer">&#10811;</a></td>
   </tr>
   {% endfor %}
   </tbody>
 </table>
-<a class="list-button" href="{{ path('town_update') }}" title="Modifier">&#10810;</a>
-<a class="list-button" href="{{ path('ville_delete') }}" title="Supprimer">&#10811;</a>
+
+
 {% else %}
   <p>Aucune ville trouvée</p>
 {% endif %}
