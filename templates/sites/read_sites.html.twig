@@ -21,12 +21,12 @@
   <tr>
     <td>{{ site.nomSite }}</td>
     <td>{{ site.lieuxlieu.nomLieu }}</td>
+    <td><a class="list-button" href="{{ path('site_update', {id:site.idSite}) }}" title="Modifier">&#10810;</a></td>
+    <td><a class="list-button" href="{{ path('site_delete', {id:site.idSite}) }}" title="Supprimer">&#10811;</a></td>
   </tr>
   {% endfor %}
   </tbody>
 </table>
-<a class="list-button" href="{{ path('site_update', sites.idSite) }}" title="Modifier">&#10810;</a>
-<a class="list-button" href="{{ path('site_delete', sites.idSite) }}" title="Supprimer">&#10811;</a>
 {% else %}
   <p>Aucun site trouvé</p>
 {% endif %}
