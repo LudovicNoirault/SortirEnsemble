@@ -27,13 +27,12 @@
     <td>{{ lieu.latitude }}</td>
     <td>{{ lieu.longitude}}</td>
     <td>{{ lieu.villesville.nomVille }}</td>
-
+    <td><a class="list-button" href="{{ path('lieu_delete', {id:lieu.idlieu}) }}" title="Modifier">&#10810;</a></td>
+    <td><a class="list-button" href="{{ path('lieux_update', {id:lieu.idlieu}) }}" title="Supprimer">&#10811;</a></td>
   </tr>
   {% endfor %}
   </tbody>
 </table>
-<a class="list-button" href="{{ path('lieu_delete', lieux.idlieu) }}" title="Modifier">&#10810;</a>
-<a class="list-button" href="{{ path('lieux_update', lieux.idlieu) }}" title="Supprimer">&#10811;</a>
 {% else %}
   <p>Aucun lieu trouvé</p>
 {% endif %}

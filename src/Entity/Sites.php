@@ -52,7 +52,7 @@ class Sites
 
     public function getIdsite(): ?int
     {
-        return $this->idsite;
+        return $this->idSite;
     }
 
     public function getNomSite(): ?string
