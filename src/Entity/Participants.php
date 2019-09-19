@@ -61,7 +61,7 @@ class Participants extends BaseUser
 
     public function __construct()
     {
-        $this->siteAffiliation = new ArrayCollection();
+        parent::__construct();
     }
 
     public function getIdparticipant(): ?int

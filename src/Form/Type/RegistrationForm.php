@@ -7,6 +7,7 @@ use FOS\UserBundle\Form\Type\RegistrationFormType as BaseRegistrationFormType;
 
 use App\Entity\Sites;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class RegistrationForm extends AbstractType
@@ -17,7 +18,11 @@ class RegistrationForm extends AbstractType
         $builder->add('prenom');
         $builder->add('telephone');
         $builder->add('actif');
-        $builder->add('siteAffiliation', CollectionType::class);
+        $builder->add('siteAffiliation', EntityType::class, [
+            'label' => 'Site affilié',
+            'class' => Sites::class,
+            'choice_label' => 'nomSite'
+        ]);
     }
 
     public function getParent()
