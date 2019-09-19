@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -19,7 +21,7 @@ class Sites
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $idsite;
+    private $idSite;
 
     /**
      * @var string
@@ -37,6 +39,16 @@ class Sites
      * })
      */
     private $lieuxlieu;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Participants", mappedBy="siteAffiliation")
+     */
+    private $utilisateursSite;
+
+    public function __construct()
+    {
+        $this->utilisateursSite = new ArrayCollection();
+    }
 
     public function getIdsite(): ?int
     {
@@ -67,5 +79,34 @@ class Sites
         return $this;
     }
 
+    /**
+     * @return Collection|Participants[]
+     */
+    public function getUtilisateursSite(): Collection
+    {
+        return $this->utilisateursSite;
+    }
 
+    public function addUtilisateursSite(Participants $utilisateursSite): self
+    {
+        if (!$this->utilisateursSite->contains($utilisateursSite)) {
+            $this->utilisateursSite[] = $utilisateursSite;
+            $utilisateursSite->setSiteAffiliation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUtilisateursSite(Participants $utilisateursSite): self
+    {
+        if ($this->utilisateursSite->contains($utilisateursSite)) {
+            $this->utilisateursSite->removeElement($utilisateursSite);
+            // set the owning side to null (unless already changed)
+            if ($utilisateursSite->getSiteAffiliation() === $this) {
+                $utilisateursSite->setSiteAffiliation(null);
+            }
+        }
+
+        return $this;
+    }
 }
