@@ -50,11 +50,6 @@ class Sites
         $this->utilisateursSite = new ArrayCollection();
     }
 
-    public function getIdsite(): ?int
-    {
-        return $this->idsite;
-    }
-
     public function getNomSite(): ?string
     {
         return $this->nomSite;
@@ -108,5 +103,10 @@ class Sites
         }
 
         return $this;
+    }
+
+    public function getIdSite(): ?int
+    {
+        return $this->idSite;
     }
 }
