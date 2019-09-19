@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  mer. 18 sep. 2019 à 14:21
+-- Généré le :  jeu. 19 sep. 2019 à 07:38
 -- Version du serveur :  5.7.21
 -- Version de PHP :  7.2.4
 
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `lieux` (
   `villes_idVille` int(11) NOT NULL,
   PRIMARY KEY (`idLieu`),
   KEY `FK_villes` (`villes_idVille`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `lieux`
@@ -202,6 +202,36 @@ CREATE TABLE IF NOT EXISTS `villes` (
 INSERT INTO `villes` (`idVille`, `nom_ville`, `code_postal`) VALUES
 (1, 'Angers', '49000'),
 (2, 'Paris', '75000');
+
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `inscriptions`
+--
+ALTER TABLE `inscriptions`
+  ADD CONSTRAINT `FK_participants` FOREIGN KEY (`participants_idParticipant`) REFERENCES `participants` (`idParticipant`),
+  ADD CONSTRAINT `FK_sorties` FOREIGN KEY (`sorties_idSortie`) REFERENCES `sorties` (`idSortie`);
+
+--
+-- Contraintes pour la table `lieux`
+--
+ALTER TABLE `lieux`
+  ADD CONSTRAINT `FK_villes` FOREIGN KEY (`villes_idVille`) REFERENCES `villes` (`idVille`);
+
+--
+-- Contraintes pour la table `sites`
+--
+ALTER TABLE `sites`
+  ADD CONSTRAINT `FK_lieux2` FOREIGN KEY (`lieux_idLieu`) REFERENCES `lieux` (`idLieu`);
+
+--
+-- Contraintes pour la table `sorties`
+--
+ALTER TABLE `sorties`
+  ADD CONSTRAINT `FK_etats` FOREIGN KEY (`etats_idEtat`) REFERENCES `etats` (`idEtat`),
+  ADD CONSTRAINT `FK_lieux` FOREIGN KEY (`lieux_idLieu`) REFERENCES `lieux` (`idLieu`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

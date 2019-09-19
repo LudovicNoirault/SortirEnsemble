@@ -29,11 +29,14 @@ class Sites
     private $nomSite;
 
     /**
-     * @var int
+     * @var \Lieux
      *
-     * @ORM\Column(name="lieux_idLieu", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Lieux")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="lieux_idLieu", referencedColumnName="idLieu")
+     * })
      */
-    private $lieuxIdlieu;
+    private $lieuxlieu;
 
     public function getIdsite(): ?int
     {
@@ -52,14 +55,14 @@ class Sites
         return $this;
     }
 
-    public function getLieuxIdlieu(): ?int
+    public function getLieuxlieu(): ?Lieux
     {
-        return $this->lieuxIdlieu;
+        return $this->lieuxlieu;
     }
 
-    public function setLieuxIdlieu(int $lieuxIdlieu): self
+    public function setLieuxlieu(?Lieux $lieuxlieu): self
     {
-        $this->lieuxIdlieu = $lieuxIdlieu;
+        $this->lieuxlieu = $lieuxlieu;
 
         return $this;
     }

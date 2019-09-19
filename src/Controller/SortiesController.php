@@ -44,7 +44,7 @@ class SortiesController extends AbstractController
             return $this->redirectToRoute('index');
         }
 
-        return $this->render('create_sorties.html.twig', [
+        return $this->render('sorties/create_sorties.html.twig', [
             'form' => $form->createView(),
         ]);
     }

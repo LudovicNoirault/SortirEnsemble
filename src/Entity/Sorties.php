@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Sorties
  *
- * @ORM\Table(name="sorties", indexes={@ORM\Index(name="sorties_participants_fk", columns={"organisateur"}), @ORM\Index(name="FK_etats", columns={"etats_idEtat"}), @ORM\Index(name="FK_lieux", columns={"lieux_idLieu"})})
+ * @ORM\Table(name="sorties", indexes={@ORM\Index(name="FK_lieux", columns={"lieux_idLieu"}), @ORM\Index(name="sorties_participants_fk", columns={"organisateur"}), @ORM\Index(name="FK_etats", columns={"etats_idEtat"})})
  * @ORM\Entity
  */
 class Sorties
@@ -78,18 +78,24 @@ class Sorties
     private $organisateur;
 
     /**
-     * @var int
+     * @var \Etats
      *
-     * @ORM\Column(name="lieux_idLieu", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Etats")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="etats_idEtat", referencedColumnName="idEtat")
+     * })
      */
-    private $lieuxIdlieu;
+    private $etatsetat;
 
     /**
-     * @var int
+     * @var \Lieux
      *
-     * @ORM\Column(name="etats_idEtat", type="integer", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Lieux")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="lieux_idLieu", referencedColumnName="idLieu")
+     * })
      */
-    private $etatsIdetat;
+    private $lieuxlieu;
 
     public function getIdsortie(): ?int
     {
@@ -192,26 +198,26 @@ class Sorties
         return $this;
     }
 
-    public function getLieuxIdlieu(): ?int
+    public function getEtatsetat(): ?Etats
     {
-        return $this->lieuxIdlieu;
+        return $this->etatsetat;
     }
 
-    public function setLieuxIdlieu(int $lieuxIdlieu): self
+    public function setEtatsetat(?Etats $etatsetat): self
     {
-        $this->lieuxIdlieu = $lieuxIdlieu;
+        $this->etatsetat = $etatsetat;
 
         return $this;
     }
 
-    public function getEtatsIdetat(): ?int
+    public function getLieuxlieu(): ?Lieux
     {
-        return $this->etatsIdetat;
+        return $this->lieuxlieu;
     }
 
-    public function setEtatsIdetat(int $etatsIdetat): self
+    public function setLieuxlieu(?Lieux $lieuxlieu): self
     {
-        $this->etatsIdetat = $etatsIdetat;
+        $this->lieuxlieu = $lieuxlieu;
 
         return $this;
     }
