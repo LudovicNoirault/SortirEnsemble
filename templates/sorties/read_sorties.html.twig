@@ -11,7 +11,6 @@
     <a class="list-link" href="{{ path('userLogin') }}">Se connecter</a>
     <p>ou</p>
     <a class="list-link" href="{{ path('userRegister') }}">S'inscrire</a>
-    {% endif %}
 </div>
 {% else %}
 
@@ -61,6 +60,9 @@
     </table>
     <a class="list-button" href="{{ path('sortie_cancel') }}" title="Modifier">&#10810;</a>
     <a class="list-button" href="{{ path('sortie_update') }}" title="Supprimer">&#10811;</a>
+    {% else %}
+    <p>Aucune sortie trouvée</p>
+    {% endif %}
 </div>
-
+{% endif %}
 {% endblock %}

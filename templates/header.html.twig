@@ -1,39 +1,47 @@
 <header>
-	<div class="logo-box"><img src="{{ asset("images/logo/SortirEnsemble.png") }}" class="logo-item"></div>
+	<a href="{{ path('index') }}" class="logo-box"><img src="{{ asset("images/logo/SortirEnsemble.svg") }}" class="logo-item"></a>
 	<nav class="header-nav">
 		<svg id="header-burger" width="100%" height="100%" viewBox="0 0 813 643" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
 		    <g id="burgerTri" transform="matrix(1,-0,0,-1,-70.47,1498.42)">
 		        <path class="burgerTriPath" d="M883.209,1498.42L70.47,1498.42L476.84,856.275L883.209,1498.42ZM640.141,1435.73L640.141,1377.53L313.538,1377.53L313.538,1435.73L640.141,1435.73ZM640.141,1334.25L640.141,1276.05L313.538,1276.05L313.538,1334.25L640.141,1334.25ZM640.141,1235.55L640.141,1177.35L313.538,1177.35L313.538,1235.55L640.141,1235.55Z"/>
 		    </g>
 		</svg>
+		{% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+		<ul id="header-nav-box" style="right: -20rem;">
+			<li class="header-nav-item">
+				<a class="header-nav-link" href="{{ path('index') }}">Accueil</a>
+				<div class="header-nav-tri"></div>
+			</li>
+			<li class="header-nav-item">
+				<a class="header-nav-link" href="{{ path('userLogin') }}">Se connecter</a>
+				<div class="header-nav-tri"></div>
+			</li>
+		</ul>
+		{% else %}
 		<ul id="header-nav-box" style="right: -20rem;">
 			{% if app.request.pathinfo != '/lol' %}
 			<li class="header-nav-item">
-				<div class="header-nav-tri"></div>
 				<a class="header-nav-link" href="{{ path('towns') }}">Villes</a>
+				<div class="header-nav-tri"></div>
 			</li>
 			<li class="header-nav-item">
-				<div class="header-nav-tri"></div>
 				<a class="header-nav-link" href="{{ path('sites') }}">Sites</a>
+				<div class="header-nav-tri"></div>
 			</li>
 			{% endif %}
 			<li class="header-nav-item">
 				<a class="header-nav-link" href="{{ path('index') }}">Accueil</a>
 				<div class="header-nav-tri"></div>
 			</li>
-			{% if is_granted('ROLE_USER') %}
 			<li class="header-nav-item">
 				<a class="header-nav-link" href="{{ path('user') }}">Profil</a>
 				<div class="header-nav-tri"></div>
 			</li>
-			{% endif %}
 			<li class="header-nav-item">
-				{% if app.request.pathinfo != '/lol' %}<a class="header-nav-link" href="{{ path('index') }}">Se connecter</a>
+				<a class="header-nav-link" href="{{ path('userLogout') }}">Se déconnecter</a>
 				<div class="header-nav-tri"></div>
-				{% else %}<a class="header-nav-link" href="{{ path('index') }}">Se déconnecter</a>
-				<div class="header-nav-tri"></div>
-				{% endif %}
 			</li>
 		</ul>
+		{% endif %}
 	</nav>
 </header>
