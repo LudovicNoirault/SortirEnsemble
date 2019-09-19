@@ -9,6 +9,12 @@ th {
 
 <h1>All Sorties</h1>
 
+{% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+    <div>
+        <a  href="{{ path('userRegister') }}">Register</a>
+    </div>
+{% endif %}
+
 {% if sorties is not empty %}
 <table>
   <thead>

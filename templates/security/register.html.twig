@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register !{% endblock %}
+
+{% block body %}
+    <form method="post">
+
+        <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+        <label for="inputEmail" class="sr-only">Email</label>
+        <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <br>
+        <label for="inputNom" class="sr-only">nom</label>
+        <input name="nom" id="inputEmail" class="form-control" placeholder="nom" required>
+        <label for="inputPrenom" class="sr-only">prenom</label>
+        <input name="prenom" id="inputPrenom" class="form-control" placeholder="prenom" required>
+        <label for="inputPseudo" class="sr-only">pseudo</label>
+        <input name="pseudo" id="inputPseudo" class="form-control" placeholder="pseudo" required>
+        <label for="inputTelephone" class="sr-only">telephone</label>
+        <input name="telephone" id="inputTelephone" class="form-control" placeholder="telephone" required>
+        <select name="site" id="site">
+            {% for site in sites %}
+                <option value={{site.id}}>{{site.nomSite}}</option>
+            {% endfor %}
+        </select>
+
+        <button class="btn btn-lg btn-primary" type="submit">
+            Register
+        </button>
+    </form>
+
+    <div>
+        <a  href="{{ path('userForgottenPassword') }}">Forgotten password</a>
+    </div>
+{% endblock %}
