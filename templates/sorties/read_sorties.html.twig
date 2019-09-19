@@ -2,7 +2,19 @@
 {% block title %}Sorties{% endblock %}
 {% block body %}
 
-{% if is_granted('ROLE_USER') %}
+{% if not is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+
+<div class="form-box">
+    <h1 class="site-title">Bienvenue sur sortirensemble.com</h1>
+    <h2 class="page-title">Veillez vous connecter ou vous inscrire pour visualiser toutes nos sorties.</h2>
+    
+    <a class="list-link" href="{{ path('userLogin') }}">Se connecter</a>
+    <p>ou</p>
+    <a class="list-link" href="{{ path('userRegister') }}">S'inscrire</a>
+    {% endif %}
+</div>
+{% else %}
+
 <h2 class="page-title">Recherchez parmis toutes nos sorties</h2>
 <h3 class="page-subtitle">ou</h3>
 <a class="list-link" href="{{ path('sortie_create') }}">Créez une sortie</a>
@@ -49,29 +61,6 @@
     </table>
     <a class="list-button" href="{{ path('sortie_cancel') }}" title="Modifier">&#10810;</a>
     <a class="list-button" href="{{ path('sortie_update') }}" title="Supprimer">&#10811;</a>
-
-    {% else %}
-    <p>Aucune sortie trouvée</p>
-
-    {% endif %}
 </div>
 
-{% else %}
-<div class="form-box">
-    <h1 class="site-title">Bienvenue sur sortirensemble.com</h1>
-    <h2 class="page-title">Veillez vous connecter ou vous inscrire pour visualiser toutes nos sorties.</h2>
-    <form class="form_connexion">
-        <fieldset>
-            <label for="email_user">Entrez votre courriel</label>
-            <input type="email" name="email_user" id="email_user" placeholder="bibidu72@wanadoo.fr">
-        </fieldset>
-        <fieldset>
-            <label for="email_user">Entrez votre mot de passe</label>
-            <input type="email" name="email_user" id="email_user" placeholder="Ex: Chloubidou">
-        </fieldset>
-    </form>
-    <a class="list-link" href="{{ path('sortie_create') }}">Se connecter</a>
-    <a class="list-link" href="{{ path('sortie_create') }}">S'inscrire</a>
-    {% endif %}
-</div>
 {% endblock %}

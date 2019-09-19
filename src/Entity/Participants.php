@@ -5,16 +5,13 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-
-use FOS\UserBundle\Model\User as BaseUser;
-
 /**
  * Participants
  *
- * @ORM\Table(name="participants", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_71697092A0D96FBF", columns={"email_canonical"}), @ORM\UniqueConstraint(name="UNIQ_7169709292FC23A8", columns={"username_canonical"}), @ORM\UniqueConstraint(name="UNIQ_71697092C05FB297", columns={"confirmation_token"})})
+ * @ORM\Table(name="participants")
  * @ORM\Entity
  */
-class Participants extends BaseUser
+class Participants
 {
     /**
      * @var int
@@ -40,6 +37,13 @@ class Participants extends BaseUser
     private $prenom;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="pseudo", type="string", length=30, nullable=false)
+     */
+    private $pseudo;
+
+    /**
      * @var string|null
      *
      * @ORM\Column(name="telephone", type="string", length=15, nullable=true)
@@ -59,9 +63,14 @@ class Participants extends BaseUser
      */
     private $siteAffiliation;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\User", inversedBy="userParticipant", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $participantUser;
+
     public function __construct()
     {
-        parent::__construct();
     }
 
     public function getIdparticipant(): ?int
@@ -125,6 +134,30 @@ class Participants extends BaseUser
     public function setSiteAffiliation(?Sites $siteAffiliation): self
     {
         $this->siteAffiliation = $siteAffiliation;
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function getParticipantUser(): ?User
+    {
+        return $this->participantUser;
+    }
+
+    public function setParticipantUser(User $participantUser): self
+    {
+        $this->participantUser = $participantUser;
 
         return $this;
     }

@@ -14,7 +14,7 @@ use App\Form\SortiesUpdateForm;
 class SortiesController extends AbstractController
 {
     /** 
-    * @Route("/index", name="index")
+    * @Route("/sorties", name="index")
     */
     public function index()
     {
