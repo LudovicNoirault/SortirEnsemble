@@ -17,7 +17,7 @@ class LieuxController extends AbstractController
     // ---------------------- Lieux -------------------------------
 
     /** 
-    * @Route("/lieux/", name="towns")
+    * @Route("/lieux/", name="places")
     */
     public function Lieux()
     {
@@ -50,7 +50,7 @@ class LieuxController extends AbstractController
             // $entityManager = $this->getDoctrine()->getManager();
             // $entityManager->persist($task);
             // $entityManager->flush();
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('places');
         }
     
         return $this->render('lieux/create_lieu.html.twig', [
@@ -80,7 +80,7 @@ class LieuxController extends AbstractController
             $lieu = $form->getData();
             $em->flush();
 
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('places');
         }
 
         return $this->render('lieux/update_lieu.html.twig', [
@@ -105,7 +105,7 @@ class LieuxController extends AbstractController
         $em->remove($id);
         $em->flush();
 
-        return $this->redirectToRoute('index');
+        return $this->redirectToRoute('places');
     }
 
 }
