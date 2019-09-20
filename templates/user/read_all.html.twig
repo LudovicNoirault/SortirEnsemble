@@ -4,7 +4,7 @@
 
 <h2 class="page-title">Gérer les utilisateurs</h2>
 <h3 class="page-subtitle">Inscrire un nouvel utilisateur</h3>
-<a class="list-link" href="{{ path('login') }}">Inscrire</a>
+<a class="list-link" href="{{ path('userRegister') }}">Inscrire</a>
 <div class="list-box">
 
     {% if participants is not empty %}
@@ -26,7 +26,7 @@
                 <td>{{ participant.prenom }}</td>
                 <td>{{ participant.pseudo }}</td>
                 <td>{{ participant.telephone }}</td>
-                <td>{{ siteAffiliation.nomSite }}</td>
+                <td>{{ participant.siteAffiliation.nomSite }}</td>
                 <td>
                     {% if participant.urlPhoto != "" %}
                     <a href="http://{{ participant.urlPhoto }}">Voir la photo</a>
@@ -35,7 +35,7 @@
                     {% endif %}
                 </td>
                 <td>
-                {% if participant.actif = true %}}
+                {% if participant.actif == true %}}
                 	<a class="list-button" href="{{ path('userStatus') }}" title="Désactiver">&#9746;</a>
                 {% else %}
                 	<a class="list-button" href="{{ path('userStatus') }}" title="Activer">&#9745;</a>

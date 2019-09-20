@@ -20,7 +20,7 @@
 			</ul>
 			{% else %}
 			<ul id="header-nav-box" style="right: -20rem;">
-				{% if app.request.pathinfo != '/lol' %}
+				{% if is_granted('ROLE_ADMIN') %}
 				<li class="header-nav-item">
 					<a class="header-nav-link" href="{{ path('towns') }}">Villes</a>
 					<div class="header-nav-tri"></div>
@@ -29,13 +29,17 @@
 					<a class="header-nav-link" href="{{ path('sites') }}">Sites</a>
 					<div class="header-nav-tri"></div>
 				</li>
+				<li class="header-nav-item">
+					<a class="header-nav-link" href="{{ path('users') }}">Utilisateurs</a>
+					<div class="header-nav-tri"></div>
+				</li>
 				{% endif %}
 				<li class="header-nav-item">
 					<a class="header-nav-link" href="{{ path('index') }}">Accueil</a>
 					<div class="header-nav-tri"></div>
 				</li>
 				<li class="header-nav-item">
-					<a class="header-nav-link" href="{{ path('userRead', {id:app.user.id}) }}">Profil</a>
+					<a class="header-nav-link" href="{{ path('userRead', {id:app.user.id}) }}">{{ app.user.userParticipant.pseudo }}</a>
 					<div class="header-nav-tri"></div>
 				</li>
 				<li class="header-nav-item">

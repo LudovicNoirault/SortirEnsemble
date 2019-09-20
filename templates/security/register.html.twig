@@ -21,7 +21,7 @@
             <input name="pseudo" id="inputPseudo" class="form-control" placeholder="pseudo" required>
             <label for="inputTelephone" class="sr-only">Numéro de téléphone</label>
             <input name="telephone" id="inputTelephone" class="form-control" placeholder="telephone" required>
-            <select name="site" id="site" required>
+            <select name="siteAffiliation" id="site" required>
                 {% for site in sites %}
                     <option value={{site.idSite}}>{{site.nomSite}}</option>
                 {% endfor %}
