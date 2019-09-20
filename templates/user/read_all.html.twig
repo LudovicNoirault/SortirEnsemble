@@ -3,8 +3,7 @@
 {% block body %}
 
 <h2 class="page-title">Gérer les utilisateurs</h2>
-<h3 class="page-subtitle">Inscrire un nouvel utilisateur</h3>
-<a class="list-link" href="{{ path('userRegister') }}">Inscrire</a>
+<a class="list-link" href="{{ path('userRegister') }}">Inscrire un nouvel utilisateur</a>
 <div class="list-box">
 
     {% if participants is not empty %}
@@ -16,7 +15,9 @@
                 <th class="list-thead-th">Pseudonyme</th>
                 <th class="list-thead-th">Téléphone</th>
                 <th class="list-thead-th">Affiliation site</th>
-                <th class="list-thead-th">Actif?</th>
+                <th class="list-thead-th">Photo</th>
+                <th class="list-thead-th">Activer</br>/Désactiver</th>
+                <th class="list-thead-th">Supprimer</th>
             </tr>
         </thead>
         <tbody>
@@ -28,20 +29,16 @@
                 <td>{{ participant.telephone }}</td>
                 <td>{{ participant.siteAffiliation.nomSite }}</td>
                 <td>
-                    {% if participant.urlPhoto != "" %}
-                    <a href="http://{{ participant.urlPhoto }}">Voir la photo</a>
-                    {% else %}
-                    Aucune photo trouvée
-                    {% endif %}
+                    Temporairement indisponible
                 </td>
                 <td>
-                {% if participant.actif == true %}}
-                	<a class="list-button" href="{{ path('userStatus') }}" title="Désactiver">&#9746;</a>
+                {% if participant.actif == true %}
+                	Actif<a class="list-button" href="{{ path('userStatus', {id:app.user.id}) }}" title="Désactiver">&#9746;</a>
                 {% else %}
-                	<a class="list-button" href="{{ path('userStatus') }}" title="Activer">&#9745;</a>
+                	Inactif<a class="list-button" href="{{ path('userStatus', {id:app.user.id}) }}" title="Activer">&#9745;</a>
                 {% endif %}
                 </td>
-                <td><a class="list-button" href="{{ path('userDelete') }}" title="Supprimer">&#10811;</a></td>
+                <td><a class="list-button" href="{{ path('userDelete', {id:app.user.id}) }}" title="Supprimer">&#10811;</a></td>
             </tr>
             {% endfor %}
         </tbody>
