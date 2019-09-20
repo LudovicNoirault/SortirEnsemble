@@ -96,15 +96,16 @@ class VillesController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
         $town = $em->getRepository('App\Entity\Villes')->find($id);
+               
         if (!$town) {
             throw $this->createNotFoundException(
                 'Pas de Ville pour l\'id ' . $id
             );
         }
 
-        $em->remove($id);
+        $em->remove($town);
         $em->flush();
 
-        return $this->redirectToRoute('index');
+        return $this->redirectToRoute('towns');
     }
 }

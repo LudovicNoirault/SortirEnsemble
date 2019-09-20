@@ -11,11 +11,6 @@
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
 
-            {% if app.user %}
-            <div class="mb-3">
-                Vous vous êtes bien connecté(e), {{ app.user.username }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
-            </div>
-            {% endif %}
             <label for="inputEmail" class="sr-only">Courriel</label>
             <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
             <label for="inputPassword" class="sr-only">Mot de passe</label>

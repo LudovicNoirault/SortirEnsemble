@@ -102,7 +102,7 @@ class LieuxController extends AbstractController
             );
         }
 
-        $em->remove($id);
+        $em->remove($lieu);
         $em->flush();
 
         return $this->redirectToRoute('places');

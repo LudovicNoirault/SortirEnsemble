@@ -30,6 +30,14 @@ class SortiesController extends AbstractController
     }
 
     /** 
+    * @Route("/sorties", name="sorties")
+    */
+    public function sorties()
+    {
+        return $this->redirectToRoute('index');
+    }
+
+    /** 
     * @Route("/sorties/create", name="sortie_create")
     */
     public function createSortie(Request $request, Security $security)
@@ -136,14 +144,21 @@ class SortiesController extends AbstractController
     public function cancelSortie($id)
     {
         $em = $this->getDoctrine()->getManager();
-        $sorties = $em->getRepository('App\Entity\Sorties')->find($id);
-        if (!$sorties) {
+        $sortie = $em->getRepository('App\Entity\Sorties')->find($id);
+        if (!$sortie) {
             throw $this->createNotFoundException(
                 'There are no sorties with the following id: ' . $id
             );
         }
 
-        $sorties->setEtatsIdetat('2');
+        $inscriptions = $em->getRepository('App\Entity\Inscriptions')->findBy(
+            ['sortiessortie' => $sortie->getIdSortie()]
+        );
+        
+        foreach ($inscriptions as $key => $value) {
+            $em->remove($value);
+        }
+        $em->remove($sortie);
         $em->flush();
 
         return $this->redirectToRoute('index');

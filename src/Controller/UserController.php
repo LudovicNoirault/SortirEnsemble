@@ -27,7 +27,6 @@ class UserController extends AbstractController
      */
     public function readUser($id)
     {
-        
         $participants = $this->getDoctrine()->getRepository('App\Entity\Participants')->find($id);
         return $this->render('user/read_single.html.twig', array('participants' => $participants));
     }

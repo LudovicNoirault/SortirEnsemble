@@ -28,7 +28,7 @@ class SecurityController extends AbstractController
             $user = new User();
             $user->setEmail($request->request->get('email'));
             $user->setPassword($passwordEncoder->encodePassword($user, $request->request->get('password')));
-            $user->setRoles(['USER_ROLE']);
+            $user->setRoles(['ROLE_USER']);
 
             $participant = new Participants();
             
@@ -45,7 +45,7 @@ class SecurityController extends AbstractController
             $em->persist($participant);
             $em->flush();
 
-            return $this->redirectToRoute('index');
+            return $this->redirectToRoute('userLogin');
         }
 
         return $this->render('security/register.html.twig', ['sites' => $sites]);

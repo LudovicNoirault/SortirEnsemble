@@ -91,17 +91,12 @@ class SitesController extends AbstractController
     /** 
     * @Route("/sites/{id}/delete", name="site_delete")
     */
-    public function DeleteSite($id)
+    public function deleteSite($id)
     {
         $em = $this->getDoctrine()->getManager();
         $site = $em->getRepository('App\Entity\Sites')->find($id);
-        if (!$town) {
-            throw $this->createNotFoundException(
-                'Pas de site pour l\'id ' . $id
-            );
-        }
 
-        $em->remove($id);
+        $em->remove($site);
         $em->flush();
 
         return $this->redirectToRoute('sites');
