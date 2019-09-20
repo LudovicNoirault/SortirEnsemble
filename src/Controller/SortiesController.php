@@ -35,13 +35,15 @@ class SortiesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            
             $em = $this->getDoctrine()->getManager();
             
             $em->persist($sorties);
             $em->flush();
 
             return $this->redirectToRoute('index');
+            
+
         }
 
         return $this->render('sorties/create_sorties.html.twig', [
@@ -88,7 +90,7 @@ class SortiesController extends AbstractController
             return $this->redirectToRoute('index');
         }
 
-        return $this->render('update_sorties.html.twig', [
+        return $this->render('sorties/update_sorties.html.twig', [
             'form' => $form->createView(),
         ]);
         
