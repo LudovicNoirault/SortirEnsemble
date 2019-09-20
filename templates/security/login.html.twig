@@ -3,6 +3,7 @@
 {% block title %}Se connecter{% endblock %}
 
 {% block body %}
+<h2 class="page-title">Se connecter</h2>
 <div class="form-box">
     <form method="post">
         <div>
@@ -15,8 +16,6 @@
                 Vous vous êtes bien connecté(e), {{ app.user.username }}, <a href="{{ path('app_logout') }}">Se déconnecter</a>
             </div>
             {% endif %}
-
-            <h1 class="h3 mb-3 font-weight-normal">Se connecter</h1>
             <label for="inputEmail" class="sr-only">Courriel</label>
             <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
             <label for="inputPassword" class="sr-only">Mot de passe</label>
@@ -25,16 +24,14 @@
             <input type="hidden" name="_csrf_token"
                    value="{{ csrf_token('authenticate') }}"
             >
-
-            <div class="checkbox mb-3">
-                <label>
-                    <input type="checkbox" name="_remember_me"> Se souvenir de moi
-                </label>
-            </div>
-            
+            <fieldset class="form-checkbox">
+                <input type="checkbox" name="_remember_me" id="rememberMe"> 
+                <label for="rememberMe" id="rememberLabel">Se souvenir de moi</label>
+            </fieldset>
             <button class="btn btn-lg btn-primary" type="submit">
-                Se connecter
+                Connexion
             </button>
+            <a class="mdp" href="{{ path('userForgottenPassword') }}">Mot de passe oublié?</a>
         </div>
     </form>
 </div>

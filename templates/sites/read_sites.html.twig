@@ -12,13 +12,15 @@
 <table>
   <thead>
     <tr>
-      <th>Nom du site</th>
-      <th>Lieu du site</th>
+      <th class="list-thead-th">Nom du site</th>
+      <th class="list-thead-th">Lieu du site</th>
+      <th class="list-thead-th">Modifier</th>
+      <th class="list-thead-th">Supprimer</th>
     </tr>
   </thead>
   <tbody>
   {% for site in sites %}
-  <tr>
+  <tr class="list-tr">
     <td>{{ site.nomSite }}</td>
     <td>{{ site.lieuxlieu.nomLieu }}</td>
     <td><a class="list-button" href="{{ path('site_update', {id:site.idSite}) }}" title="Modifier">&#10810;</a></td>
