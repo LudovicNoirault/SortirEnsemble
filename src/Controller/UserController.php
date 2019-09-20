@@ -4,8 +4,12 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 use App\Entity\Participants;
+
+use App\Form\UserUpdateForm;
+
 
 class UserController extends AbstractController
 {
@@ -31,27 +35,20 @@ class UserController extends AbstractController
     /**
      * @Route("/users/{id}/update", name="userUpdate")
      */
-    public function updateUser($id)
+    public function updateUser(Request $request, $id)
     {
-        $user = $this->getDoctrine()->getRepository('App\Entity\Participants')->find($id);
-        $form = $this->createForm(UserUpdateForm::class, $user);
+        $em = $this->getDoctrine()->getManager();
+        $participants = $em->getRepository('App\Entity\Participants')->find($id);
+
+        $form = $this->createForm(UserUpdateForm::class, $participants);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $form->getData() holds the submitted values
-            // but, the original `$task` variable has also been updated
 
-            $em = $this->getDoctrine()->getManager();
-            
-            $em->persist($user);
+            $sorties = $form->getData();
             $em->flush();
 
-            // ... perform some action, such as saving the task to the database
-            // for example, if Task is a Doctrine entity, save it!
-            // $entityManager = $this->getDoctrine()->getManager();
-            // $entityManager->persist($task);
-            // $entityManager->flush();
             return $this->redirectToRoute('userRead', array('id' => $id));
         }
 
