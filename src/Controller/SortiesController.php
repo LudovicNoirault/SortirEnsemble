@@ -7,6 +7,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 use App\Entity\Sorties;
+use App\Entity\Inscriptions;
+use App\Entity\Etats;
+
+use Symfony\Component\Security\Core\Security;
 
 use App\Form\SortiesCreateForm;
 use App\Form\SortiesUpdateForm;
@@ -26,7 +30,7 @@ class SortiesController extends AbstractController
     /** 
     * @Route("/sorties/create", name="sortie_create")
     */
-    public function createSortie(Request $request)
+    public function createSortie(Request $request, Security $security)
     {
         // creates a sorties object and initializes some data for this example
         $sorties = new Sorties();
@@ -36,14 +40,20 @@ class SortiesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             
+            $user = $security->getUser();
+            
+            $sorties -> setOrganisateur($user -> getUserParticipant());
+            
+            $etat = $this->getDoctrine()->getRepository('App\Entity\Etats')->findBy(array('idetat'=>1));
+
+            $sorties -> setEtatsetat($etat[0]);
+
             $em = $this->getDoctrine()->getManager();
             
             $em->persist($sorties);
             $em->flush();
 
             return $this->redirectToRoute('index');
-            
-
         }
 
         return $this->render('sorties/create_sorties.html.twig', [
@@ -65,6 +75,26 @@ class SortiesController extends AbstractController
 
         return $this->render('sorties/read_one_sorties.html.twig', array('sortie' => $sortie));
     }
+
+    /** 
+    * @Route("/sorties/{id}/join", name="sortie_join")
+    */
+    public function joinSortie($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $inscriptions = $em->getRepository('App\Entity\Inscriptions')->find($id);
+        if (!$sorties) {
+            throw $this->createNotFoundException(
+                'There are no sorties with the following id: ' . $id
+            );
+        }
+
+        $sorties->setEtatsIdetat('2');
+        $em->flush();
+
+        return $this->redirectToRoute('index');
+    }
+
     /** 
     * @Route("/sorties/{id}/update", name="sortie_update")
     */
@@ -93,7 +123,6 @@ class SortiesController extends AbstractController
         return $this->render('sorties/update_sorties.html.twig', [
             'form' => $form->createView(),
         ]);
-        
     }
 
     /** 
