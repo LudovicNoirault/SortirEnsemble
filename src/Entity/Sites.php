@@ -101,7 +101,6 @@ class Sites
                 $utilisateursSite->setSiteAffiliation(null);
             }
         }
-
         return $this;
     }
 
