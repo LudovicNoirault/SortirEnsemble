@@ -24,13 +24,11 @@ class SortiesCreateForm extends AbstractType
             ->add('nom', TextType::class, ['label' => 'Nom de la sortie'])
             ->add('datedebut', DateTimeType::class, ['label' => 'Date de début', 'input'  => 'datetime', 'widget' => 'single_text'])
             ->add('duree', NumberType::class, ['label' => 'Durée de la sortie'])
+            ->add('timeScale', TextType::class, ['label' => 'Type de temps'])
             ->add('datecloture', DateTimeType::class, ['label' => 'Date de clôture', 'input'  => 'datetime', 'widget' => 'single_text'])
             ->add('nbinscriptionsmax', NumberType::class, ['label' => 'Nombre maximum de participants'])
             ->add('descriptioninfos', TextType::class, ['label' => 'Description de la sortie'])
-            ->add('urlPhoto', TextType::class, ['label' => 'Photo transmise'])
-            ->add('organisateur', EntityType::class, ['label' => 'Nom de l\'organisateur', 'class' => Participants::class,'choice_label' => 'pseudo'])
             ->add('lieuxlieu', EntityType::class, ['label' => 'Lieu de la sortie', 'class' => Lieux::class,'choice_label' => 'nomLieu'])
-            ->add('etatsetat', EntityType::class, ['label' => 'Etat de la sortie', 'class' => Etats::class,'choice_label' => 'libelle'])
             ->add('save', SubmitType::class, ['label' => 'Envoyer'])
         ;
     }
