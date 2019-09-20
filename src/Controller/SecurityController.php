@@ -28,7 +28,8 @@ class SecurityController extends AbstractController
             $user = new User();
             $user->setEmail($request->request->get('email'));
             $user->setPassword($passwordEncoder->encodePassword($user, $request->request->get('password')));
-            
+            $user->setRoles(['USER_ROLE']);
+
             $participant = new Participants();
             
             $participant->setNom($request->request->get('nom'));
@@ -65,7 +66,7 @@ class SecurityController extends AbstractController
  
             if ($user === null) {
                 $this->addFlash('danger', 'Email Inconnu');
-                return $this->redirectToRoute('homepage');
+                return $this->redirectToRoute('index');
             }
             $token = $tokenGenerator->generateToken();
  
@@ -74,7 +75,7 @@ class SecurityController extends AbstractController
                 $entityManager->flush();
             } catch (\Exception $e) {
                 $this->addFlash('warning', $e->getMessage());
-                return $this->redirectToRoute('homepage');
+                return $this->redirectToRoute('index');
             }
  
             $url = $this->generateUrl('app_reset_password', array('token' => $token), UrlGeneratorInterface::ABSOLUTE_URL);
@@ -91,7 +92,7 @@ class SecurityController extends AbstractController
  
             $this->addFlash('notice', 'Mail envoyé');
  
-            return $this->redirectToRoute('homepage');
+            return $this->redirectToRoute('index');
         }
  
         return $this->render('security/forgotten_password.html.twig');
@@ -111,7 +112,7 @@ class SecurityController extends AbstractController
 
            if ($user === null) {
                $this->addFlash('danger', 'Token Inconnu');
-               return $this->redirectToRoute('homepage');
+               return $this->redirectToRoute('index');
            }
 
            $user->setResetToken(null);
@@ -120,7 +121,7 @@ class SecurityController extends AbstractController
 
            $this->addFlash('notice', 'Mot de passe mis à jour');
 
-           return $this->redirectToRoute('homepage');
+           return $this->redirectToRoute('index');
        }else {
 
            return $this->render('security/reset_password.html.twig', ['token' => $token]);
@@ -149,6 +150,6 @@ class SecurityController extends AbstractController
      */
     public function logout()
     {
-        return $this->redirectToRoute('userLogin');
+
     }
 }
