@@ -217,7 +217,6 @@ main {
 	border-radius: 0.5rem;
 	border-top: 2px solid var(--element-color);
 	box-shadow: 0 0.2rem 0.5rem -0.2rem #000;
-	overflow-x: scroll;
 }
 .form-box form div {
 	display: flex;
