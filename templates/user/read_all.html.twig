@@ -4,10 +4,10 @@
 
 <h2 class="page-title">Gérer les utilisateurs</h2>
 <h3 class="page-subtitle">Inscrire un nouvel utilisateur</h3>
-<a class="list-link" href="{{ path('sortie_create') }}">Inscrire</a>
+<a class="list-link" href="{{ path('login') }}">Inscrire</a>
 <div class="list-box">
 
-    {% if sorties is not empty %}
+    {% if participants is not empty %}
     <table>
         <thead>
             <tr>
@@ -20,27 +20,32 @@
             </tr>
         </thead>
         <tbody>
-            {% for participants in participantss %}
+            {% for participant in participants %}
             <tr class="list-tr">
-                <td>{{ participants.nom }}</td>
-                <td>{{ participants.prenom|date('Y-m-d H:i:s') }}</td>
-                <td>{{ participants.pseudo }}</td>
-                <td>{{ participants.telephone|date('Y-m-d H:i:s') }}</td>
-                <td>{{ participants.nbinscriptionsmax }}</td>
-                <td>{{ participants.descriptioninfos }}</td>
+                <td>{{ participant.nom }}</td>
+                <td>{{ participant.prenom }}</td>
+                <td>{{ participant.pseudo }}</td>
+                <td>{{ participant.telephone }}</td>
+                <td>{{ siteAffiliation.nomSite }}</td>
                 <td>
-                    {% if participants.urlPhoto != "" %}
-                    <a href="http://{{ participants.urlPhoto }}">Voir la photo</a>
+                    {% if participant.urlPhoto != "" %}
+                    <a href="http://{{ participant.urlPhoto }}">Voir la photo</a>
                     {% else %}
                     Aucune photo trouvée
                     {% endif %}
                 </td>
+                <td>
+                {% if participant.actif = true %}}
+                	<a class="list-button" href="{{ path('userStatus') }}" title="Désactiver">&#9746;</a>
+                {% else %}
+                	<a class="list-button" href="{{ path('userStatus') }}" title="Activer">&#9745;</a>
+                {% endif %}
+                </td>
+                <td><a class="list-button" href="{{ path('userDelete') }}" title="Supprimer">&#10811;</a></td>
             </tr>
             {% endfor %}
         </tbody>
-    </table>
-    <a class="list-button" href="{{ path('usersDisable') }}" title="Activer/désactiver">&#10810;</a>
-    <a class="list-button" href="{{ path('sortie_update') }}" title="Supprimer">&#10811;</a>
+    </table>    
     {% else %}
     <p>Aucun utilisateur trouvé</p>
     {% endif %}
