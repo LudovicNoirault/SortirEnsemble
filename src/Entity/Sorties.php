@@ -43,6 +43,11 @@ class Sorties
     private $duree;
 
     /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $timeScale;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="datecloture", type="datetime", nullable=false)
@@ -62,13 +67,6 @@ class Sorties
      * @ORM\Column(name="descriptioninfos", type="string", length=500, nullable=true)
      */
     private $descriptioninfos;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="urlPhoto", type="string", length=250, nullable=true)
-     */
-    private $urlphoto;
 
     /**
      * @var \Participants
@@ -221,6 +219,18 @@ class Sorties
     public function setLieuxlieu(?Lieux $lieuxlieu): self
     {
         $this->lieuxlieu = $lieuxlieu;
+
+        return $this;
+    }
+
+    public function getTimeScale(): ?string
+    {
+        return $this->timeScale;
+    }
+
+    public function setTimeScale(string $timeScale): self
+    {
+        $this->timeScale = $timeScale;
 
         return $this;
     }
