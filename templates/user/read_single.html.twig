@@ -1,38 +1,44 @@
-<style>
-th, td {
-  padding: 10px;
-}
-th {
-  text-align: right;
-}
-</style>
+{% extends 'base.html.twig' %}
+{% block title %}Mon profil{% endblock %}
+{% block body %}
 
-<h1>User profile : {{ participants.pseudo }}</h1>
-<table>
-  <tbody>
-    <tr>
-      <th>Pseudo</th>
-    <td>{{ participants.pseudo }}</td>
-    </tr>
-    <tr>
-      <th>Prénom</th>
-    <td>{{ participants.prenom }}</td>
-    </tr>
-    <tr>
-      <th>Nom</th>
-    <td>{{ participants.nom }}</td>
-    </tr>
-    <tr>
-      <th>Téléphone</th>
-    <td>{{ participants.telephone }}</td>
-    </tr>
-    <tr>
-      <th>Mail</th>
-    <td>{{ participants.participantUser.email }}</td>
-    </tr>
-    <tr>
-      <th>Site d'affiliation</th>
-    <td>{{ participants.siteAffiliation.nomSite }}</td>
-    </tr>
-  </tbody>
-</table>
+<h2 class="page-title">Mon profil : {{ participants.pseudo }}</h2>
+<div class="list-box">
+  <table>
+    <tbody>
+      <tr class="profil-tr">
+        <th colspan="2"><img class="profil-img" src="{{ asset("images/profils/GiQiBE.png") }}"></th>
+      </tr>
+      <tr class="profil-tr">
+        <th class="profil-th">Prénom</th>
+      <td>{{ participants.prenom }}</td>
+      </tr>
+      <tr class="profil-tr">
+        <th class="profil-th">Nom</th>
+      <td>{{ participants.nom }}</td>
+      </tr>
+      <tr class="profil-tr">
+        <th class="profil-th">Pseudo</th>
+      <td>{{ participants.pseudo }}</td>
+      </tr>
+      <tr class="profil-tr">
+        <th class="profil-th">Téléphone</th>
+      <td>{{ participants.telephone }}</td>
+      </tr>
+      <tr class="profil-tr">
+        <th class="profil-th">Mail</th>
+      <td>{{ participants.participantUser.email }}</td>
+      </tr>
+      <tr class="profil-tr">
+        <th class="profil-th">Site d'affiliation</th>
+      <td>{{ participants.siteAffiliation.nomSite }}</td>
+      </tr>
+      <tr class="profil-tr">
+        <th class="profil-th">Modifier</th>
+        <td><a class="list-button" href="{{ path('userUpdate', {id:app.user.id}) }}" title="Modifier">&#10810;</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+
