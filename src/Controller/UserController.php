@@ -10,15 +10,15 @@ use App\Entity\Participants;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/user", name="user")
+     * @Route("/users", name="users")
      */
     public function listUser()
     {
         return $this->render('user/read_all.html.twig');
     }
 
-        /**
-     * @Route("/user/{id}", name="userRead")
+    /**
+     * @Route("/users/{id}", name="userRead")
      */
     public function readUser($id)
     {
@@ -27,8 +27,8 @@ class UserController extends AbstractController
         return $this->render('user/read_single.html.twig', array('participants' => $participants));
     }
 
-        /**
-     * @Route("/user/{id}/update", name="userUpdate")
+    /**
+     * @Route("/users/{id}/update", name="userUpdate")
      */
     public function updateUser($id)
     {
@@ -57,5 +57,22 @@ class UserController extends AbstractController
         return $this->render('user/update_user.html.twig',  [
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/users/{id}/status", name="userStatus")
+     */
+    public function statusUser($id)
+    {
+        $user = $this->getDoctrine()->getRepository('App\Entity\Participants')->find($id);
+        
+        if ($user.getActif()){
+            $user.setActif(false);
+        }
+        else{
+            $user.setActif(true);
+        }
+
+        return $this->redirectToRoute('users');
     }
 }
