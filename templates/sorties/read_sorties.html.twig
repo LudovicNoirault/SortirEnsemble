@@ -54,12 +54,12 @@
                 <td>{{ sortie.organisateur.pseudo }}</td>
                 <td>{{ sortie.lieuxlieu.nomLieu }}</td>
                 <td>{{ sortie.etatsetat.libelle }}</td>
+                <td><a class="list-button" href="{{ path('sortie_cancel', {id:sortie.idsortie}) }}" title="Modifier">&#10810;</a></td>
+                <td><a class="list-button" href="{{ path('sortie_update', {id:sortie.idsortie}) }}" title="Supprimer">&#10811;</a></td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <a class="list-button" href="{{ path('sortie_cancel') }}" title="Modifier">&#10810;</a>
-    <a class="list-button" href="{{ path('sortie_update') }}" title="Supprimer">&#10811;</a>
     {% else %}
     <p>Aucune sortie trouvée</p>
     {% endif %}

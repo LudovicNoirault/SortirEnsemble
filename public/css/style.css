@@ -190,6 +190,7 @@ main {
 }
 .page-title {
 	text-transform: uppercase;
+	margin-bottom: 1rem;
 	font-size: 2rem;
 	text-align: center;
 	color: var(--element-color);
