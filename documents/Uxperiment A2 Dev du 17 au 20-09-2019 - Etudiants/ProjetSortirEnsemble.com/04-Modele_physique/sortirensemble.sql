@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 20 sep. 2019 à 08:12
+-- Généré le :  ven. 20 sep. 2019 à 08:31
 -- Version du serveur :  5.7.21
 -- Version de PHP :  7.2.4
 
@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `participants` (
 --
 
 INSERT INTO `participants` (`id_site`, `participant_user_id`, `idParticipant`, `nom`, `prenom`, `pseudo`, `telephone`, `actif`) VALUES
-(NULL, 1, 1, 'Dupont', 'Albert', 'Adupont', '0102030405', 1);
+(1, 1, 1, 'Dupont', 'Albert', 'Adupont', '0102030405', 1);
 
 -- --------------------------------------------------------
 
@@ -158,18 +158,18 @@ CREATE TABLE IF NOT EXISTS `sorties` (
   `etats_idEtat` int(11) DEFAULT NULL,
   `lieux_idLieu` int(11) DEFAULT NULL,
   PRIMARY KEY (`idSortie`),
-  UNIQUE KEY `UNIQ_488163E84BD76D44` (`organisateur`),
   KEY `FK_lieux` (`lieux_idLieu`),
   KEY `FK_participant` (`organisateur`),
   KEY `FK_etats` (`etats_idEtat`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `sorties`
 --
 
 INSERT INTO `sorties` (`idSortie`, `nom`, `datedebut`, `duree`, `datecloture`, `nbinscriptionsmax`, `descriptioninfos`, `urlPhoto`, `organisateur`, `etats_idEtat`, `lieux_idLieu`) VALUES
-(1, 'lorem', '2019-09-20 14:45:00', 180, '2019-09-20 17:45:00', 15, 'ipsum', 'https://cdn.pixabay.com/photo/2012/04/01/18/55/work-in-progress-24027_1280.png', 1, 1, 1);
+(1, 'lorem', '2019-09-20 14:45:00', 180, '2019-09-20 17:45:00', 15, 'ipsum', 'https://cdn.pixabay.com/photo/2012/04/01/18/55/work-in-progress-24027_1280.png', 1, 1, 1),
+(3, 'lorem ipsum2', '2019-09-20 15:03:00', 181, '2019-09-20 18:03:00', 17, 'ipsum lorem2', 'https://cdn.pixabay.com/photo/2012/04/01/18/55/work-in-progress-24027_1280.png', 1, 4, 1);
 
 -- --------------------------------------------------------
 
