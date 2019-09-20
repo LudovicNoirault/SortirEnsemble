@@ -90,7 +90,7 @@ class SortiesController extends AbstractController
             return $this->redirectToRoute('index');
         }
 
-        return $this->render('update_sorties.html.twig', [
+        return $this->render('sorties/update_sorties.html.twig', [
             'form' => $form->createView(),
         ]);
         

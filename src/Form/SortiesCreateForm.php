@@ -13,6 +13,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use App\Entity\Sorties;
 use App\Entity\Lieux;
 use App\Entity\Etats;
+use App\Entity\Participants;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class SortiesCreateForm extends AbstractType
@@ -27,7 +28,7 @@ class SortiesCreateForm extends AbstractType
             ->add('nbinscriptionsmax', NumberType::class, ['label' => 'Nombre maximum de participants'])
             ->add('descriptioninfos', TextType::class, ['label' => 'Description de la sortie'])
             ->add('urlPhoto', TextType::class, ['label' => 'Photo transmise'])
-            ->add('organisateur', NumberType::class, ['label' => 'Organisateur'])
+            ->add('organisateur', EntityType::class, ['label' => 'Nom de l\'organisateur', 'class' => Participants::class,'choice_label' => 'pseudo'])
             ->add('lieuxlieu', EntityType::class, ['label' => 'Lieu de la sortie', 'class' => Lieux::class,'choice_label' => 'nomLieu'])
             ->add('etatsetat', EntityType::class, ['label' => 'Etat de la sortie', 'class' => Etats::class,'choice_label' => 'libelle'])
             ->add('save', SubmitType::class, ['label' => 'Envoyer'])

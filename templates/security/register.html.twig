@@ -3,10 +3,11 @@
 {% block title %}S'inscrire{% endblock %}
 
 {% block body %}
+<h2 class="page-title">Enregistrez toutes les informations nécessaires pour vous inscrire</h2>
 <div class="form-box">
     <form method="post">
         <div>
-            <h1 class="h3 mb-3 font-weight-normal">Enregistrez toutes les informations nécessaires pour vous inscrire</h1>
+            
             <label for="inputEmail" class="sr-only">Courriel</label>
             <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
             <label for="inputPassword" class="sr-only">Mot de passe</label>
@@ -25,11 +26,9 @@
                     <option value={{site.idSite}}>{{site.nomSite}}</option>
                 {% endfor %}
             </select>
-
             <button class="btn btn-lg btn-primary" type="submit">
                 S'inscrire
             </button>
-            <a  href="{{ path('userForgottenPassword') }}">Mot de passe oublié?</a>
         </div>
     </form>
 </div>
