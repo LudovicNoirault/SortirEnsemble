@@ -74,13 +74,19 @@ body {
 	- HEADER
 ---------------------------------------*/
 header {
-	display: flex;
 	width: 100%;
-	position: relative;
-	background-color: rgba(255, 255, 255, 0.1);
+	position: sticky;
+	top: 0;
+	background-color: #484848;
 	border-bottom: 2px solid var(--element-color);
 	box-shadow: 0 0 1rem 0 #000;
 	height: 7rem;
+}
+.header-block {
+	display: flex;
+	position: relative;
+	width: 100%;
+	height: 100%;
 }
 .logo-box {
 	position: absolute;
@@ -177,8 +183,8 @@ main {
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
-	min-height: calc(100vh - 11rem);
-	padding: 5rem 8rem 4rem 8rem;
+	min-height: calc(100vh - 7rem);
+	padding: 5rem 8rem 6rem 8rem;
 	background-image: url('../images/logo/dxfcg.png');
 	animation: backgroundslide linear infinite 60s;
 }
@@ -187,6 +193,17 @@ main {
 	font-size: 2rem;
 	text-align: center;
 	color: var(--element-color);
+}
+.home-box {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.site-title {
+	font-size: 5rem;
+	color: var(--element-color);
+	text-align: center;
+	padding: 5rem;
 }
 /*---------------------------------------
 	- form-box
@@ -232,15 +249,79 @@ main {
 	transition: 0.3s;
 	box-shadow: 0 0.8rem 1rem -0.5rem #000;
 }
-
+.form-checkbox {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: none;
+	padding: 1rem;
+}
+#rememberMe, #rememberLabel {
+	width: auto;
+	margin: 0;
+	padding: 0;
+	padding-left: 1rem;
+	transition: 0.3s;
+}
+#rememberLabel:hover {
+	transition: 0.3s;
+	color: #fff;
+	text-shadow: 0 0 0.2rem rgba(255, 255, 255, 0.2);
+}
+.mdp {
+	padding: 1rem;
+	color: #777;
+	font-style: italic;
+	transition: 0.3s;
+}
+.mdp:hover {
+	padding: 1rem;
+	color: #fff;
+	text-shadow: 0 0 0.2rem rgba(255, 255, 255, 0.2);
+	transition: 0.3s;
+}
 /*---------------------------------------
 	- list-box
 ---------------------------------------*/
 .list-box {
 	display: flex;
 }
+.list-box table {
+	background: rgba(75, 75, 75, 0.6);
+	padding: 2rem;
+	border-radius: 0.5rem;
+	border-top: 2px solid var(--element-color);
+	box-shadow: 0 0.2rem 0.5rem -0.2rem #000;
+}
+.list-box thead {
+	background: var(--element-color);
+	padding: 0.5rem;
+	font-size: 1.3rem;
+	color: #333;
+}
+.list-box body {
+	padding: 0.5rem;
+}
+.list-tr {
+	background: rgba(0, 0, 0, 0.1);
+	padding: 0.5rem;
+}
+.list-tr:nth-child(even) {
+	background: rgba(255, 255, 255, 0.1);
+}
+.list-box th, td {
+	padding: 0.5rem 1rem;
+	text-align: center;
+}
+.list-thead-th{
+	background: var(--element-color);
+	padding: 0.5rem;
+	font-size: 1.3rem;
+	color: #333;
+	min-width: 7rem;
+}
 .list-link {
-	margin: 0.5rem;
+	margin: 1rem;
 	padding: 0.5rem 2rem;
 	background: #484848;
 	color: #ddd;
@@ -277,7 +358,7 @@ main {
 ---------------------------------------*/
 footer {
 	position: absolute;
-	bottom: 0;
+	bottom: 0rem;
 	padding: 0 3rem;
 	display: flex;
 	justify-content: center;
@@ -285,7 +366,7 @@ footer {
 	text-align: center;
 	width: 100%;
 	height: 4rem;
-	background-color: rgba(255, 255, 255, 0.1);
+	background-color: #484848;
 	border-top: 2px solid var(--element-color);
 	box-shadow: 0 0 1rem 0 #000;
 }

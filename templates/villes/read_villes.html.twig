@@ -6,20 +6,22 @@
     <h2 class="page-title">Retrouvez toutes nos villes</h2>
       <h3 class="page-subtitle">ou</h3>
       <a class="list-link" href="{{ path('create_town') }}">Enregistrez une ville</a>
-  <div class="form-box">
+  <div class="list-box">
 
 
 {% if villes is not empty %}
 <table>
   <thead>
     <tr>
-      <th>Nom de la ville</th>
-      <th>Code postal de la ville</th>
+      <th class="list-thead-th">Nom de la ville</th>
+      <th class="list-thead-th">Code postal de la ville</th>
+      <th class="list-thead-th">Modifier</th>
+      <th class="list-thead-th">Supprimer</th>
     </tr>
   </thead>
   <tbody>
   {% for ville in villes %}
-  <tr>
+  <tr class="list-tr">
     <td>{{ ville.nomVille }}</td>
     <td>{{ ville.codePostal}}    </td>
     <td><a class="list-button" href="{{ path('town_update', {id:ville.idville}) }}" title="Modifier">&#10810;</a></td>

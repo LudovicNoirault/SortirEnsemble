@@ -5,23 +5,25 @@
 {% block body %}
   <h2 class="page-title">Visualiser tout les lieux existants</h2>
   <h3 class="page-subtitle">ou</h3>
-  <a class="list-link" href="{{ path('createLieu') }}">Enregistrez un lieu</a>
+  <a class="list-link" href="{{ path('createLieu') }}">Enregistrez un nouveau lieu</a>
     <div class="list-box">
 
 {% if lieux is not empty %}
 <table>
   <thead>
     <tr>
-      <th>Nom du Lieu</th>
-      <th>Rue</th>
-      <th>Latitude du Lieu</th>
-      <th>Longitude du Lieu</th>
-      <th>Nom de la Ville</th>
+      <th class="list-thead-th">Nom du Lieu</th>
+      <th class="list-thead-th">Rue</th>
+      <th class="list-thead-th">Latitude du Lieu</th>
+      <th class="list-thead-th">Longitude du Lieu</th>
+      <th class="list-thead-th">Nom de la Ville</th>
+      <th class="list-thead-th">Modifier</th>
+      <th class="list-thead-th">Supprimer</th>
     </tr>
   </thead>
   <tbody>
   {% for lieu in lieux %}
-  <tr>
+  <tr class="list-tr">
     <td>{{ lieu.nomLieu }}</td>
     <td>{{ lieu.rue}}    </td>
     <td>{{ lieu.latitude }}</td>
