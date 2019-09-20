@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  jeu. 19 sep. 2019 à 13:50
--- Version du serveur :  5.7.24
--- Version de PHP :  7.2.14
+-- Généré le :  ven. 20 sep. 2019 à 08:12
+-- Version du serveur :  5.7.21
+-- Version de PHP :  7.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -33,7 +33,17 @@ CREATE TABLE IF NOT EXISTS `etats` (
   `idEtat` int(11) NOT NULL AUTO_INCREMENT,
   `libelle` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`idEtat`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `etats`
+--
+
+INSERT INTO `etats` (`idEtat`, `libelle`) VALUES
+(1, 'Active'),
+(2, 'Annulee'),
+(3, 'Terminee'),
+(4, 'En cours');
 
 -- --------------------------------------------------------
 
@@ -68,7 +78,14 @@ CREATE TABLE IF NOT EXISTS `lieux` (
   `villes_idVille` int(11) DEFAULT NULL,
   PRIMARY KEY (`idLieu`),
   KEY `FK_villes` (`villes_idVille`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `lieux`
+--
+
+INSERT INTO `lieux` (`idLieu`, `nom_lieu`, `rue`, `latitude`, `longitude`, `villes_idVille`) VALUES
+(1, 'Chabada', '56 Boulevard du Doyenné', 47.488749, -0.535838, 1);
 
 -- --------------------------------------------------------
 
@@ -89,7 +106,14 @@ CREATE TABLE IF NOT EXISTS `participants` (
   PRIMARY KEY (`idParticipant`),
   UNIQUE KEY `UNIQ_716970923D631C9D` (`participant_user_id`),
   KEY `IDX_71697092E26315E6` (`id_site`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `participants`
+--
+
+INSERT INTO `participants` (`id_site`, `participant_user_id`, `idParticipant`, `nom`, `prenom`, `pseudo`, `telephone`, `actif`) VALUES
+(NULL, 1, 1, 'Dupont', 'Albert', 'Adupont', '0102030405', 1);
 
 -- --------------------------------------------------------
 
@@ -104,7 +128,15 @@ CREATE TABLE IF NOT EXISTS `sites` (
   `lieux_idLieu` int(11) DEFAULT NULL,
   PRIMARY KEY (`idSite`),
   KEY `FK_lieux2` (`lieux_idLieu`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `sites`
+--
+
+INSERT INTO `sites` (`idSite`, `nom_site`, `lieux_idLieu`) VALUES
+(1, 'Salle de Concert Anjou', 1),
+(2, 'Salle de Concert Anjou 2', 1);
 
 -- --------------------------------------------------------
 
@@ -122,14 +154,22 @@ CREATE TABLE IF NOT EXISTS `sorties` (
   `nbinscriptionsmax` int(11) NOT NULL,
   `descriptioninfos` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `urlPhoto` varchar(250) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `organisateur` int(11) NOT NULL,
+  `organisateur` int(11) DEFAULT NULL,
   `etats_idEtat` int(11) DEFAULT NULL,
   `lieux_idLieu` int(11) DEFAULT NULL,
   PRIMARY KEY (`idSortie`),
+  UNIQUE KEY `UNIQ_488163E84BD76D44` (`organisateur`),
   KEY `FK_lieux` (`lieux_idLieu`),
-  KEY `sorties_participants_fk` (`organisateur`),
+  KEY `FK_participant` (`organisateur`),
   KEY `FK_etats` (`etats_idEtat`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `sorties`
+--
+
+INSERT INTO `sorties` (`idSortie`, `nom`, `datedebut`, `duree`, `datecloture`, `nbinscriptionsmax`, `descriptioninfos`, `urlPhoto`, `organisateur`, `etats_idEtat`, `lieux_idLieu`) VALUES
+(1, 'lorem', '2019-09-20 14:45:00', 180, '2019-09-20 17:45:00', 15, 'ipsum', 'https://cdn.pixabay.com/photo/2012/04/01/18/55/work-in-progress-24027_1280.png', 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -146,7 +186,14 @@ CREATE TABLE IF NOT EXISTS `user` (
   `reset_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_8D93D649E7927C74` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `user`
+--
+
+INSERT INTO `user` (`id`, `email`, `roles`, `password`, `reset_token`) VALUES
+(1, 'demo@mail.com', '[]', '$argon2i$v=19$m=1024,t=2,p=2$Nm5pSDdTUVNtR2djdHBZSA$qxHFXJ+SFMndS1c2ia8LWE2o+qd5QZRAtQOPYXLXKyU', NULL);
 
 -- --------------------------------------------------------
 
@@ -160,7 +207,14 @@ CREATE TABLE IF NOT EXISTS `villes` (
   `nom_ville` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
   `code_postal` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`idVille`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Déchargement des données de la table `villes`
+--
+
+INSERT INTO `villes` (`idVille`, `nom_ville`, `code_postal`) VALUES
+(1, 'Angers', '49000');
 
 --
 -- Contraintes pour les tables déchargées
@@ -197,7 +251,8 @@ ALTER TABLE `sites`
 --
 ALTER TABLE `sorties`
   ADD CONSTRAINT `FK_488163E8760206E3` FOREIGN KEY (`etats_idEtat`) REFERENCES `etats` (`idEtat`),
-  ADD CONSTRAINT `FK_488163E8B7AE97EA` FOREIGN KEY (`lieux_idLieu`) REFERENCES `lieux` (`idLieu`);
+  ADD CONSTRAINT `FK_488163E8B7AE97EA` FOREIGN KEY (`lieux_idLieu`) REFERENCES `lieux` (`idLieu`),
+  ADD CONSTRAINT `FK_participant` FOREIGN KEY (`organisateur`) REFERENCES `participants` (`idParticipant`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
