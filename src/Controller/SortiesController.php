@@ -12,6 +12,8 @@ use App\Entity\Etats;
 
 use Symfony\Component\Security\Core\Security;
 
+use DateTime;
+
 use App\Form\SortiesCreateForm;
 use App\Form\SortiesUpdateForm;
 
@@ -77,21 +79,24 @@ class SortiesController extends AbstractController
     }
 
     /** 
-    * @Route("/sorties/{id}/join", name="sortie_join")
+    * @Route("/sorties/{idSortie}-{idUser}/join", name="sortie_join")
     */
-    public function joinSortie($id)
+    public function joinSortie($idUser, $idSortie)
     {
         $em = $this->getDoctrine()->getManager();
-        $inscriptions = $em->getRepository('App\Entity\Inscriptions')->find($id);
-        if (!$sorties) {
-            throw $this->createNotFoundException(
-                'There are no sorties with the following id: ' . $id
-            );
-        }
 
-        $sorties->setEtatsIdetat('2');
+        $sortie = $this->getDoctrine()->getRepository('App\Entity\Sorties')->find($idSortie);
+        $user = $this->getDoctrine()->getRepository('App\Entity\User')->find($idUser);
+        $participant = $user -> getUserParticipant();
+
+        $inscription = new Inscriptions();
+
+        $inscription -> setSortiessortie($sortie);
+        $inscription -> setDateInscription(new DateTime());
+        $inscription -> setParticipantsparticipant($participant);
+        
+        $em->persist($inscription);
         $em->flush();
-
         return $this->redirectToRoute('index');
     }
 

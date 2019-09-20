@@ -49,7 +49,7 @@
                 <td>{{ sortie.organisateur.pseudo }}</td>
                 <td>{{ sortie.lieuxlieu.nomLieu }}</td>
                 <td>{{ sortie.etatsetat.libelle }}</td>
-                <td><a class="list-button" href="{{ path('sortie_join', {id:sortie.idsortie}) }}" title="Inscription">&#10810;</a></td>                
+                <td><a class="list-button" href="{{ path('sortie_join', {idSortie:sortie.idsortie, idUser:app.user.id}) }}" title="Inscription">&#10810;</a></td>                
                 <td><a class="list-button" href="{{ path('sortie_update', {id:sortie.idsortie}) }}" title="Modifier">&#10810;</a></td>
                 <td><a class="list-button" href="{{ path('sortie_cancel', {id:sortie.idsortie}) }}" title="Supprimer">&#10811;</a></td>
 
