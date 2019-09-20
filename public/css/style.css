@@ -217,6 +217,7 @@ main {
 	border-radius: 0.5rem;
 	border-top: 2px solid var(--element-color);
 	box-shadow: 0 0.2rem 0.5rem -0.2rem #000;
+	overflow-x: scroll;
 }
 .form-box form div {
 	display: flex;
@@ -428,10 +429,17 @@ footer p {
 		width: 3.5rem;
 		height: 2.5rem;
 	}
+	main {
+		padding: 5rem 4rem 6rem 4rem;
+	}
 }
 @media screen and (max-width: 800px){
-	
+	main {
+		padding: 5rem 2rem 6rem 2rem;
+	}
 }
 @media screen and (max-width: 600px){
-
+	main {
+		padding: 5rem 1rem 6rem 1rem;
+	}
 }

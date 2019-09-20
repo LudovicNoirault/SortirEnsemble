@@ -33,9 +33,9 @@
                 </td>
                 <td>
                 {% if participant.actif == true %}
-                	Actif<a class="list-button" href="{{ path('userStatus', {id:app.user.id}) }}" title="Désactiver">&#9746;</a>
+                	Actif<a class="list-button" href="{{ path('userStatus', {id:participant.idParticipant}) }}" title="Désactiver">&#9746;</a>
                 {% else %}
-                	Inactif<a class="list-button" href="{{ path('userStatus', {id:app.user.id}) }}" title="Activer">&#9745;</a>
+                	Inactif<a class="list-button" href="{{ path('userStatus', {id:participant.idParticipant}) }}" title="Activer">&#9745;</a>
                 {% endif %}
                 </td>
                 <td><a class="list-button" href="{{ path('userDelete', {id:app.user.id}) }}" title="Supprimer">&#10811;</a></td>

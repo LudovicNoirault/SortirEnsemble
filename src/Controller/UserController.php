@@ -63,14 +63,16 @@ class UserController extends AbstractController
     public function statusUser($id)
     {
         $user = $this->getDoctrine()->getRepository('App\Entity\Participants')->find($id);
-        
-        if ($user.getActif()){
-            $user.setActif(false);
+        $em = $this->getDoctrine()->getManager();
+
+        if ($user -> getActif()){
+            $user -> setActif(false);
         }
         else{
-            $user.setActif(true);
+            $user -> setActif(true);
         }
 
+        $em->flush();
         return $this->redirectToRoute('users');
     }
 

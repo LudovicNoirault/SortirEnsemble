@@ -73,11 +73,6 @@ class Participants
     {
     }
 
-    public function getIdparticipant(): ?int
-    {
-        return $this->idparticipant;
-    }
-
     public function getNom(): ?string
     {
         return $this->nom;
@@ -160,5 +155,10 @@ class Participants
         $this->participantUser = $participantUser;
 
         return $this;
+    }
+
+    public function getIdParticipant(): ?int
+    {
+        return $this->idParticipant;
     }
 }
