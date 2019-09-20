@@ -1,0 +1,12 @@
+{# templates/update_user.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Modification du profil{% endblock %}
+
+{% block body %}
+    <h2 class="page-title">Modification du profil</h2>
+    <p>Remplissez les champs pour modifier votre profil</p>
+	<div class="form-box">
+		{{ form(form) }}
+	</div>
+{% endblock %}
