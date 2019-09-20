@@ -5,6 +5,7 @@ Projet [Ux]-periment réalisé a l'IMIE avec pour but la création d'une applica
 ## Description technique
 
 Technologies :
+
     - Composer
     - Php 7.2
     - Symfony 4.3
@@ -13,11 +14,13 @@ Technologies :
 ## Utilisateurs en place
 
 Admin :
+
     - Email : admin@admin.admin
     - Password : admin
     - Role : administrateur
 
 User :
+
     - Email : user@user.user
     - Password : user
     - Role : Utilisateur
@@ -48,5 +51,12 @@ User :
 
 ## Credit
 
-Designer : Phillipe Favreau
-Développeurs : Alexis Pontoizeau, Ludovic Noirault
+Designer :
+  
+  - Phillipe Favreau
+
+Développeurs :
+  
+  - Alexis Pontoizeau
+  
+  -  Ludovic Noirault
