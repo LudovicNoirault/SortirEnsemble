@@ -21,9 +21,8 @@ class VillesController extends AbstractController
     public function Towns()
     {
         $towns = $this->getDoctrine()->getRepository('App\Entity\Villes')->findAll();
-        dump($towns);
-        die();
-        #return $this->render('villes/read_villes.html.twig', array('villes' => $towns));
+        
+        return $this->render('villes/read_villes.html.twig', array('villes' => $towns));
 
     }
 

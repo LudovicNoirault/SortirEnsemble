@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Sorties
  *
- * @ORM\Table(name="sorties", indexes={@ORM\Index(name="FK_lieux", columns={"lieux_idLieu"}), @ORM\Index(name="sorties_participants_fk", columns={"organisateur"}), @ORM\Index(name="FK_etats", columns={"etats_idEtat"})})
+ * @ORM\Table(name="sorties", indexes={@ORM\Index(name="FK_lieux", columns={"lieux_idLieu"}), @ORM\Index(name="FK_participant", columns={"organisateur"}), @ORM\Index(name="FK_etats", columns={"etats_idEtat"})})
  * @ORM\Entity
  */
 class Sorties
@@ -71,9 +71,12 @@ class Sorties
     private $urlphoto;
 
     /**
-     * @var int
+     * @var \Participants
      *
-     * @ORM\Column(name="organisateur", type="integer", nullable=false)
+     * @ORM\OneToOne(targetEntity="Participants")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="organisateur", referencedColumnName="idParticipant")
+     * })
      */
     private $organisateur;
 
@@ -186,12 +189,12 @@ class Sorties
         return $this;
     }
 
-    public function getOrganisateur(): ?int
+    public function getOrganisateur(): ?Participants
     {
         return $this->organisateur;
     }
 
-    public function setOrganisateur(int $organisateur): self
+    public function setOrganisateur(?Participants $organisateur): self
     {
         $this->organisateur = $organisateur;
 
